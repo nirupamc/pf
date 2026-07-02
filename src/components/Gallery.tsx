@@ -10,19 +10,6 @@ export default function Gallery({ slug }: { slug: string }) {
   const setImageView = useStore((s) => s.setImageView)
   const images = manifest[slug] ?? []
 
-  if (images.length === 0) {
-    return (
-      <div
-        className="my-4 rounded-md border px-4 py-6 text-center text-[12px]"
-        style={{
-          borderColor: 'var(--vscode-editorWidget-border)',
-          color: 'var(--vscode-descriptionForeground)',
-        }}
-      >
-        No images yet — drop files into <code>public/images/{slug}/</code> and rebuild.
-      </div>
-    )
-  }
 
   return (
     <div className="my-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
