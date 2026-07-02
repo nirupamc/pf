@@ -1,0 +1,6 @@
+* text=auto
+*.pdf -text
+*.png -text
+*.woff -text
+*.woff2 -text
+*.ttf -text

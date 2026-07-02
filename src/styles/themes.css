@@ -1,0 +1,227 @@
+/*
+ * THEME DEFINITIONS — the only stylesheet allowed to contain hex colors.
+ *
+ * Theme 1 (default): "Dark+ (Visual Studio Code)" — exact values from
+ * microsoft/vscode extensions/theme-defaults (dark_plus.json + dark_vs.json
+ * + workbench defaults for dark themes).
+ *
+ * Theme 2: "Nirupam's Theme" — red/dark custom look (pairs with the
+ * Zero Two. Applied via <html data-theme="nirupam">.
+ */
+
+:root {
+  /* Base */
+  --vscode-foreground: #cccccc;
+  --vscode-descriptionForeground: #9d9d9d;
+  --vscode-disabledForeground: #888888;
+  --vscode-errorForeground: #f48771;
+  --vscode-focusBorder: #007fd4;
+  --vscode-widget-shadow: rgba(0, 0, 0, 0.36);
+
+  /* Editor */
+  --vscode-editor-background: #1e1e1e;
+  --vscode-editor-foreground: #d4d4d4;
+  --vscode-editor-selectionBackground: #264f78;
+  --vscode-editorLineNumber-foreground: #858585;
+  --vscode-editorLineNumber-activeForeground: #c6c6c6;
+  --vscode-editorIndentGuide-background: #404040;
+  --vscode-editorWidget-background: #252526;
+  --vscode-editorWidget-border: #454545;
+  --vscode-minimap-background: rgba(30, 30, 30, 0.6);
+
+  /* Title bar */
+  --vscode-titleBar-activeBackground: #3c3c3c;
+  --vscode-titleBar-activeForeground: #cccccc;
+  --vscode-titleBar-inactiveForeground: #9d9d9d;
+  --vscode-commandCenter-background: #303030;
+  --vscode-commandCenter-border: #4d4d4d;
+
+  /* Activity bar */
+  --vscode-activityBar-background: #333333;
+  --vscode-activityBar-foreground: #ffffff;
+  --vscode-activityBar-inactiveForeground: rgba(255, 255, 255, 0.55);
+  --vscode-activityBar-activeBorder: #ffffff;
+  --vscode-activityBarBadge-background: #007acc;
+  --vscode-activityBarBadge-foreground: #ffffff;
+
+  /* Side bar */
+  --vscode-sideBar-background: #252526;
+  --vscode-sideBar-foreground: #cccccc;
+  --vscode-sideBar-border: #2b2b2b;
+  --vscode-sideBarTitle-foreground: #bbbbbb;
+  --vscode-sideBarSectionHeader-background: #252526;
+  --vscode-sideBarSectionHeader-foreground: #cccccc;
+
+  /* Lists */
+  --vscode-list-hoverBackground: #2a2d2e;
+  --vscode-list-activeSelectionBackground: #094771;
+  --vscode-list-activeSelectionForeground: #ffffff;
+  --vscode-list-inactiveSelectionBackground: #37373d;
+  --vscode-list-focusOutline: #007fd4;
+
+  /* Tabs */
+  --vscode-editorGroupHeader-tabsBackground: #252526;
+  --vscode-tab-activeBackground: #1e1e1e;
+  --vscode-tab-inactiveBackground: #2d2d2d;
+  --vscode-tab-activeForeground: #ffffff;
+  --vscode-tab-inactiveForeground: rgba(255, 255, 255, 0.5);
+  --vscode-tab-border: #252526;
+  --vscode-tab-activeBorderTop: #007acc;
+
+  /* Breadcrumbs */
+  --vscode-breadcrumb-foreground: rgba(204, 204, 204, 0.8);
+
+  /* Inputs */
+  --vscode-input-background: #3c3c3c;
+  --vscode-input-foreground: #cccccc;
+  --vscode-input-placeholderForeground: #a6a6a6;
+  --vscode-input-border: #3c3c3c;
+
+  /* Buttons */
+  --vscode-button-background: #0e639c;
+  --vscode-button-foreground: #ffffff;
+  --vscode-button-hoverBackground: #1177bb;
+  --vscode-button-secondaryBackground: #3a3d41;
+
+  /* Badges */
+  --vscode-badge-background: #4d4d4d;
+  --vscode-badge-foreground: #ffffff;
+
+  /* Panel */
+  --vscode-panel-background: #1e1e1e;
+  --vscode-panel-border: #2b2b2b;
+  --vscode-panelTitle-activeForeground: #e7e7e7;
+  --vscode-panelTitle-activeBorder: #e7e7e7;
+  --vscode-panelTitle-inactiveForeground: rgba(231, 231, 231, 0.6);
+
+  /* Terminal ANSI */
+  --vscode-terminal-foreground: #cccccc;
+  --vscode-terminal-ansiGreen: #0dbc79;
+  --vscode-terminal-ansiBrightGreen: #23d18b;
+  --vscode-terminal-ansiRed: #cd3131;
+  --vscode-terminal-ansiYellow: #e5e510;
+  --vscode-terminal-ansiBlue: #2472c8;
+  --vscode-terminal-ansiCyan: #11a8cd;
+  --vscode-terminal-ansiMagenta: #bc3fbc;
+  --vscode-terminal-ansiBrightBlack: #666666;
+
+  /* Status bar */
+  --vscode-statusBar-background: #007acc;
+  --vscode-statusBar-foreground: #ffffff;
+  --vscode-statusBarItem-hoverBackground: rgba(255, 255, 255, 0.12);
+
+  /* Scrollbars */
+  --vscode-scrollbarSlider-background: rgba(121, 121, 121, 0.4);
+  --vscode-scrollbarSlider-hoverBackground: rgba(100, 100, 100, 0.7);
+  --vscode-scrollbarSlider-activeBackground: rgba(191, 191, 191, 0.4);
+
+  /* Quick input */
+  --vscode-quickInput-background: #252526;
+  --vscode-quickInputList-focusBackground: #094771;
+  --vscode-pickerGroup-foreground: #3794ff;
+
+  /* Menus / tooltips */
+  --vscode-menu-background: #252526;
+  --vscode-menu-foreground: #cccccc;
+  --vscode-menu-selectionBackground: #094771;
+  --vscode-editorHoverWidget-background: #252526;
+  --vscode-editorHoverWidget-border: #454545;
+
+  /* Links */
+  --vscode-textLink-foreground: #3794ff;
+  --vscode-textLink-activeForeground: #3794ff;
+
+  /* Git decorations */
+  --vscode-gitDecoration-modifiedResourceForeground: #e2c08d;
+  --vscode-gitDecoration-untrackedResourceForeground: #73c991;
+  --vscode-gitDecoration-deletedResourceForeground: #c74e39;
+
+  /* Charts */
+  --vscode-charts-blue: #3794ff;
+  --vscode-charts-green: #89d185;
+  --vscode-charts-orange: #d18616;
+
+  /* ---- portfolio-specific tokens (still theme-driven) ---- */
+  --portfolio-titleBar-closeHover: #e81123;
+  --portfolio-editorAction-background: #2d2d2d;
+  --portfolio-editorAction-hoverBackground: #3c3c3c;
+  --portfolio-checker-base: #1f1f1f;
+  --portfolio-checker-square: #2a2a2a;
+  --portfolio-pdf-background: #525659;
+  /* Claude panel: neutral gray in Dark+, accent-colored in Nirupam's Theme */
+  --portfolio-claudeCard-border: #454545;
+  --portfolio-claudeChip-background: #3c3c3c;
+  --portfolio-claudeChip-foreground: #e8c284;
+  --portfolio-toast-background: #352a20;
+  --portfolio-toast-border: #6a5127;
+  --portfolio-toast-foreground: #e8c284;
+}
+
+/* =====================================================================
+ * "Nirupam's Theme" — red/dark. Backgrounds get a warm cast, every blue
+ * accent becomes red. Pairs with the Batman Who Laughs wallpaper.
+ * ===================================================================== */
+[data-theme='nirupam'] {
+  --vscode-focusBorder: #e04a52;
+
+  --vscode-editor-background: #1c1416;
+  --vscode-editor-selectionBackground: #6e2a30;
+  --vscode-editorWidget-background: #241a1c;
+  --vscode-editorWidget-border: #573f43;
+
+  --vscode-titleBar-activeBackground: #3a2a2d;
+  --vscode-commandCenter-background: #2f2326;
+  --vscode-commandCenter-border: #573f43;
+
+  --vscode-activityBar-background: #2b1f22;
+  --vscode-activityBar-foreground: #ff8085;
+  --vscode-activityBar-inactiveForeground: rgba(224, 74, 82, 0.6);
+  --vscode-activityBar-activeBorder: #e04a52;
+  --vscode-activityBarBadge-background: #b3242c;
+
+  --vscode-sideBar-background: #241a1c;
+  --vscode-sideBar-border: #33272a;
+  --vscode-sideBarSectionHeader-background: #241a1c;
+
+  --vscode-list-hoverBackground: #302326;
+  --vscode-list-activeSelectionBackground: #7a1f26;
+  --vscode-list-inactiveSelectionBackground: #3a2a2d;
+  --vscode-list-focusOutline: #e04a52;
+
+  --vscode-editorGroupHeader-tabsBackground: #241a1c;
+  --vscode-tab-activeBackground: #1c1416;
+  --vscode-tab-inactiveBackground: #2e2124;
+  --vscode-tab-border: #241a1c;
+  --vscode-tab-activeBorderTop: #e04a52;
+
+  --vscode-input-background: #382a2d;
+  --vscode-input-border: #382a2d;
+
+  --vscode-button-background: #a1232b;
+  --vscode-button-hoverBackground: #b73039;
+
+  --vscode-badge-background: #a1232b;
+
+  --vscode-panel-background: #1c1416;
+  --vscode-panel-border: #33272a;
+
+  --vscode-statusBar-background: #8f1d24;
+
+  --vscode-quickInput-background: #241a1c;
+  --vscode-quickInputList-focusBackground: #7a1f26;
+  --vscode-pickerGroup-foreground: #ff8085;
+
+  --vscode-menu-background: #241a1c;
+  --vscode-menu-selectionBackground: #7a1f26;
+  --vscode-editorHoverWidget-background: #241a1c;
+  --vscode-editorHoverWidget-border: #573f43;
+
+  --vscode-textLink-foreground: #ff8085;
+  --vscode-textLink-activeForeground: #ff8085;
+
+  --vscode-minimap-background: rgba(28, 20, 22, 0.6);
+
+  --portfolio-editorAction-background: #2e2124;
+  --portfolio-editorAction-hoverBackground: #3a2a2d;
+  --portfolio-claudeCard-border: #a3484e;
+}
