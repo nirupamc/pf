@@ -182,7 +182,7 @@ manufacturing work:
   React, Next.js.
 - Integrated **LLM APIs (OpenAI, Gemini)** in 2 client projects.
 - Set up CI/CD pipelines saving **~4 hours per release**.
--  **DJ artist page** —
+-  **Playlist downloader** —
   [github.com/nirupamc/zacc](https://github.com/nirupamc/zacc)
 
 ## Recent client work
