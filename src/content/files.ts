@@ -49,8 +49,7 @@ in the terminal · ask the Claude panel on the right about me · pet the cat.
 
 Most developers have side projects. Mine include **screen-printed garments**:
 I design in Figma/Photoshop, do the color separation myself, and print on
-silk screens — see \`projects/gamusa-reimagined.md\` and
-\`projects/kyd-color-separation.md\`.
+silk screens — see \`projects/kyd-color-separation.md\`.
 
 ---
 
@@ -249,9 +248,9 @@ const riyumMd = `# Riyum — Full-Stack Developer
 - **Shot and edited 25+ social videos** — camera work and the edit, both mine.
 - **Designed posters** for their classes, plus **30+ branded assets**.
 - **Learned screen printing and color separation here** — this is where the
-  printing craft started. The craft I picked up at Riyum became
-  [gamusa-reimagined](/projects/gamusa-reimagined) and the production plate
-  work in [kyd-color-separation](/projects/kyd-color-separation).
+  printing craft started. The craft I picked up at Riyum became the
+  production plate work in
+  [kyd-color-separation](/projects/kyd-color-separation).
 
 \`\`\`gallery
 riyum
@@ -436,8 +435,8 @@ with all the guardrail and reliability questions that come with autonomy.
 
 const gamusaMd = `# Gamusa, Reimagined
 
-> A case study: traditional Assamese textile × modern graphic language,
-> screen-printed by hand.
+> A design experiment: a rap duo's logo, living inside a traditional
+> Assamese textile's visual system.
 
 ## What a gamusa is
 
@@ -445,18 +444,21 @@ The **gamusa** is a hand-woven cotton textile from Assam — white with red
 borders and woven motifs — and one of the most significant cultural symbols
 of Assamese identity. It's offered as a gesture of respect, worn, gifted at
 Bihu, draped over honoured guests. Everyone in Assam owns one; almost nobody
-redesigns one.
+changes what's printed on it.
 
-## My modern twist
+## What I actually did
 
-I kept the format sacred — the proportions, the red-on-white language — and
-replaced the graphics with contemporary illustration: modern linework and
-composition that reads as *now* without disrespecting the object it lives on.
+I took a rap duo's existing logo and made it sit naturally inside the
+gamusa's format — silhouette work in Photoshop/Illustrator, keeping the
+proportions and the red-on-white language, swapping the traditional motif
+for a modern mark in its place.
 
+**Honest scope:** the logo belongs to the duo, not me. The design work here
+is the adaptation — making a contemporary mark read like it belongs on a
+hundred-year-old format instead of looking slapped on. Small project;
+I like it anyway.
 
 ## Photos
-
-Finished pieces and process shots:
 
 \`\`\`gallery
 gamusa

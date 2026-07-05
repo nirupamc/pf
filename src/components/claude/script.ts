@@ -49,11 +49,10 @@ export const PRESETS: Preset[] = [
     question: 'Wait, he screen prints too?',
     answer:
       'Yes — he designs, **color-separates and screen-prints textiles**, and ' +
-      'manages manufacturing for the **Watawi** apparel brand. He reimagined the ' +
-      'traditional Assamese **gamusa** with modern graphics. Pipeline: Figma → ' +
-      'Photoshop → silk screen. See `projects/gamusa-reimagined.md` — and ' +
-      '`projects/thrift-bazaar.md`, where the printing side and the dev side ' +
-      'meet in one marketplace.',
+      'manages manufacturing for the **Watawi** apparel brand. Pipeline: Figma → ' +
+      'Photoshop → silk screen. See the plate work in ' +
+      '`projects/kyd-color-separation.md` — and `projects/thrift-bazaar.md`, ' +
+      'where the printing side and the dev side meet in one marketplace.',
   },
   {
     id: 'views',
