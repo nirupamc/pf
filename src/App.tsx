@@ -22,29 +22,36 @@ function useRouteSync() {
   const navigate = useNavigate()
   const activeTab = useStore((s) => s.activeTab)
   const openFile = useStore((s) => s.openFile)
+  const setNotFound = useStore((s) => s.setNotFound)
 
   // URL → store
   useEffect(() => {
     const id = decodeURIComponent(location.pathname.replace(/^\/+|\/+$/g, ''))
     if (!id) {
+      setNotFound(null)
       openFile('readme', { preview: true })
       return
     }
     if (fileById.has(id)) {
+      setNotFound(null)
       // don't re-open (and thereby promote) a tab that's already active —
       // this fires on every store→URL navigation too
       if (useStore.getState().activeTab !== id) openFile(id)
-    } else navigate('/readme', { replace: true })
+    } else {
+      // unknown path: VS Code-style "file not found" tab (URL preserved)
+      setNotFound('/' + id)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname])
 
-  // store → URL
+  // store → URL (also runs when a file open clears the not-found state)
+  const notFound = useStore((s) => s.notFound)
   useEffect(() => {
-    if (!activeTab) return
+    if (!activeTab || notFound) return
     const want = '/' + activeTab
     if (location.pathname !== want) navigate(want)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab])
+  }, [activeTab, notFound])
 }
 
 function useKeyboardShortcuts() {

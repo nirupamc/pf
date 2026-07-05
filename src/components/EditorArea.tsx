@@ -11,12 +11,41 @@ const Gallery = lazy(() => import('./Gallery'))
 
 export default function EditorArea() {
   const activeTab = useStore((s) => s.activeTab)
+  const notFound = useStore((s) => s.notFound)
   const file = activeTab ? fileById.get(activeTab) : null
 
+  if (notFound) return <NotFoundView path={notFound} />
   if (!file) return <WelcomeScreen />
   if (file.viewer === 'pdf') return <PdfView key={file.id} />
   if (file.viewer === 'markdown') return <MarkdownOrRaw key={file.id} file={file} />
   return <CodeView key={file.id} file={file} />
+}
+
+/** VS Code-style "file not found" editor tab for unknown deep links. */
+function NotFoundView({ path }: { path: string }) {
+  const openFile = useStore((s) => s.openFile)
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-3 px-6 text-center">
+      <span className="codicon codicon-warning !text-[44px] opacity-40" aria-hidden />
+      <p className="text-[14px]" style={{ color: 'var(--vscode-editor-foreground)' }}>
+        The file <code className="font-mono">{path}</code> could not be found.
+      </p>
+      <p className="text-[12px]" style={{ color: 'var(--vscode-descriptionForeground)' }}>
+        It may have been moved, renamed, or never existed. This portfolio only
+        ships what's in the explorer.
+      </p>
+      <button
+        onClick={() => openFile('readme', { preview: true })}
+        className="mt-1 rounded-[2px] px-3 py-1.5 text-[13px]"
+        style={{
+          background: 'var(--vscode-button-background)',
+          color: 'var(--vscode-button-foreground)',
+        }}
+      >
+        Open README.md
+      </button>
+    </div>
+  )
 }
 
 /* ------------------------------------------------------------------ */

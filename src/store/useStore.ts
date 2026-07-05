@@ -32,6 +32,8 @@ interface AppState {
   wallpaperOn: boolean
   /** image opened in the VS Code-style image viewer */
   imageView: { src: string; alt: string } | null
+  /** unknown URL path currently shown as a "file not found" editor tab */
+  notFound: string | null
 
   openFile: (id: string, opts?: { preview?: boolean }) => void
   closeTab: (id: string) => void
@@ -47,6 +49,7 @@ interface AppState {
   setTheme: (t: ThemeId) => void
   toggleWallpaper: () => void
   setImageView: (v: { src: string; alt: string } | null) => void
+  setNotFound: (path: string | null) => void
 }
 
 const TABS_KEY = 'vsc-portfolio-tabs'
@@ -109,6 +112,7 @@ export const useStore = create<AppState>((set, get) => ({
   theme: initialTheme,
   wallpaperOn: wallpaperFor(initialTheme),
   imageView: null,
+  notFound: null,
 
   openFile: (id, opts) => {
     if (!fileById.has(id)) return
@@ -128,7 +132,13 @@ export const useStore = create<AppState>((set, get) => ({
     }
     if (!opts?.preview && preview === id) preview = null
     saveTabs(tabs)
-    set({ openTabs: tabs, activeTab: id, previewTab: preview, mobileOverlay: null })
+    set({
+      openTabs: tabs,
+      activeTab: id,
+      previewTab: preview,
+      mobileOverlay: null,
+      notFound: null, // opening a real file always leaves the 404 view
+    })
   },
 
   closeTab: (id) => {
@@ -181,4 +191,5 @@ export const useStore = create<AppState>((set, get) => ({
       return { wallpaperOn: on }
     }),
   setImageView: (v) => set({ imageView: v }),
+  setNotFound: (path) => set({ notFound: path }),
 }))
