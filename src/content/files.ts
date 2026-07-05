@@ -77,6 +77,9 @@ TanTech LLC (remote, USA).
 - **Physical products** — I design, color-separate and screen-print textiles,
   and manage manufacturing for the Watawi apparel brand. Design file to
   shipped garment.
+- **Where the two meet** — [ThriftBazaar](/projects/thrift-bazaar), a
+  multi-vendor thrift marketplace: commerce software built by someone who
+  also ships the physical product.
 
 ## Why the mix works
 
@@ -339,6 +342,47 @@ const pwaAttendanceMd = `# PWA Attendance
 \`PWA\` · \`Service Workers\` · \`QR\` · \`Geolocation\` · \`React\`
 
 [Source — github.com/nirupamc/pwa-attendance](https://github.com/nirupamc/pwa-attendance)
+`
+
+const thriftBazaarMd = `# ThriftBazaar
+
+> Indian thrift culture runs on Instagram DMs and UPI screenshots.
+> **ThriftBazaar turns that chaos into a real marketplace.** A passion project.
+
+## What it is
+
+A multi-vendor thrift marketplace:
+
+- **MySpace-style storefronts** — vendors customize banners, stickers,
+  marquee text and fonts. Every store looks like its owner.
+- **Rich discovery** — buyers filter by rarity, era, fabric and city.
+- **Multi-vendor cart** with **Razorpay** checkout and order tracking,
+  split into per-vendor sub-orders.
+
+## Tech highlights
+
+- **Socket.io drop alerts** — store followers get real-time pings when a
+  vendor lists new pieces.
+- **Vendor dashboards** — revenue, sales, followers.
+- **Admin panel** — vendor approval and payout management.
+
+Built with **TypeScript + Node.js**.
+
+## Why it exists
+
+I print and manufacture garments, and I build software. This is the project
+where both sides meet: the commerce infrastructure Indian thrift sellers
+actually need.
+
+## Links
+
+[Live demo](https://thrift-store-ncng.vercel.app) ·
+[Source — github.com/nirupamc/Thrift-store](https://github.com/nirupamc/Thrift-store) ·
+[API docs](https://thrift-store-9h66.onrender.com/api/v1/docs)
+
+\`\`\`gallery
+thrift-bazaar
+\`\`\`
 `
 
 const tantechDashboardMd = `# TanTech Dashboard
@@ -658,6 +702,15 @@ export const files: PortfolioFile[] = [
     content: pwaAttendanceMd,
   },
   {
+    id: 'projects/thrift-bazaar',
+    name: 'thrift-bazaar.md',
+    path: 'projects/thrift-bazaar.md',
+    language: 'markdown',
+    icon: 'md',
+    viewer: 'markdown',
+    content: thriftBazaarMd,
+  },
+  {
     id: 'projects/tantech-dashboard',
     name: 'tantech-dashboard.md',
     path: 'projects/tantech-dashboard.md',
@@ -769,6 +822,7 @@ export const tree: TreeNode[] = [
     children: [
       { kind: 'file', fileId: 'projects/nerv-orbital' },
       { kind: 'file', fileId: 'projects/pwa-attendance' },
+      { kind: 'file', fileId: 'projects/thrift-bazaar' },
       { kind: 'file', fileId: 'projects/tantech-dashboard' },
       { kind: 'file', fileId: 'projects/auto-apply' },
       { kind: 'file', fileId: 'projects/gamusa-reimagined' },
