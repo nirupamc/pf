@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useStore } from './store/useStore'
-import { fileById } from './content/files'
+import { fileById, resolveFileId } from './content/files'
 import TitleBar from './components/TitleBar'
 import ActivityBar from './components/ActivityBar'
 import Sidebar from './components/Sidebar'
@@ -32,11 +32,12 @@ function useRouteSync() {
       openFile('readme', { preview: true })
       return
     }
-    if (fileById.has(id)) {
+    const resolvedId = resolveFileId(id)
+    if (fileById.has(resolvedId)) {
       setNotFound(null)
       // don't re-open (and thereby promote) a tab that's already active —
       // this fires on every store→URL navigation too
-      if (useStore.getState().activeTab !== id) openFile(id)
+      if (useStore.getState().activeTab !== resolvedId) openFile(resolvedId)
     } else {
       // unknown path: VS Code-style "file not found" tab (URL preserved)
       setNotFound('/' + id)

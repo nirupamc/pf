@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { fileById } from '../content/files'
+import { fileById, resolveFileId } from '../content/files'
 
 export type ThemeId = 'dark-plus' | 'nirupam'
 
@@ -83,7 +83,10 @@ function loadTabs(): string[] {
     if (!raw) return []
     const arr: unknown = JSON.parse(raw)
     if (!Array.isArray(arr)) return []
-    return arr.filter((id): id is string => typeof id === 'string' && fileById.has(id))
+    return arr
+      .filter((id): id is string => typeof id === 'string')
+      .map(resolveFileId)
+      .filter((id, index, ids) => fileById.has(id) && ids.indexOf(id) === index)
   } catch {
     return []
   }
@@ -115,6 +118,7 @@ export const useStore = create<AppState>((set, get) => ({
   notFound: null,
 
   openFile: (id, opts) => {
+    id = resolveFileId(id)
     if (!fileById.has(id)) return
     const { openTabs, previewTab } = get()
     let tabs = openTabs

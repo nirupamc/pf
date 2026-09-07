@@ -41,7 +41,19 @@ function flatten(nodes: TreeNode[], expanded: Set<string>, depth = 0, prefix = '
 
 export default function FileTree() {
   const [expanded, setExpanded] = useState<Set<string>>(
-    () => new Set(['about', 'experience', 'education', 'projects']),
+    () => new Set([
+      'about',
+      'experience',
+      'education',
+      'projects',
+      'projects/ai-systems',
+      'projects/products',
+      'projects/full-stack',
+      'creative',
+      'creative/technology',
+      'creative/print-and-design',
+      'writing',
+    ]),
   )
   const [focusIdx, setFocusIdx] = useState(0)
   const activeTab = useStore((s) => s.activeTab)

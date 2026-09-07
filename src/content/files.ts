@@ -1,111 +1,12 @@
 import type { PortfolioFile, TreeNode } from './types'
+import { OWNER } from './meta'
+import { projects } from './projects'
+import { writing } from './writing'
 
 /* =========================================================================
  * All portfolio content lives here as a typed virtual file system.
  * Remaining owner inputs are marked `TODO: NIRUPAM`.
  * ========================================================================= */
-
-const readmeMd = `# Nirupam Changmai
-
-**Full-Stack Developer · AI Engineer** — Guwahati, Assam, India 🇮🇳
-
-> Full-stack developer and AI engineer from Guwahati — I ship production apps,
-> integrate LLMs, and screen-print textiles for brands I help manufacture.
-
-Building for 5+ years — freelancing since college, 2+ years in professional roles.
-
----
-
-## Now
-
-Senior Software Developer at **TanTech LLC** (remote, USA) — building React /
-TypeScript / Next.js products with AI integrations across OpenAI, Anthropic
-and Gemini APIs.
-
-## The timeline
-
-| When | What |
-| ---- | ---- |
-| Jan 2026 – present | **TanTech LLC** — Senior Software Developer (remote, USA) |
-| Jul 2025 – Jan 2026 | **XO Clothing** — Web & Digital Operations |
-| Jan 2025 – Jul 2025 | **Full-time freelance stretch** + **Watawi** product & manufacturing |
-| Mar 2024 – Jan 2025 | **Riyum** — Full-Stack Developer (Guwahati) |
-| 2020 – present | **Freelancing since college** (BCA 2020–2023) — ongoing |
-
-## Quick tour
-
-| Where | What |
-| ----- | ---- |
-| \`about/\` | Who I am + how to reach me |
-| \`experience/\` | One file per role, newest first |
-| \`projects/\` | Software, AI agents — and actual physical textiles |
-| \`skills.json\` | The stack, as a dependencies block |
-| \`resume.pdf\` | The formal version |
-
-**Pro tips:** press \`Ctrl+P\` to fuzzy-find any file · press \`\`Ctrl+\` \`\` and type \`help\`
-in the terminal · ask the Claude panel on the right about me · pet the cat.
-
-## The unusual part
-
-Most developers have side projects. Mine include **screen-printed garments**:
-I design in Figma/Photoshop, do the color separation myself, and print on
-silk screens — see \`projects/kyd-color-separation.md\`.
-
----
-
-<sub>UI inspired by Visual Studio Code. Not affiliated with Microsoft.
-Built with React, Vite, Tailwind and Shiki — no Monaco, all handmade.</sub>
-`
-
-const aboutMeMd = `# About me
-
-<img src="/images/about/profile.jpg" align="right" width="150" alt="Nirupam Changmai" style="border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; margin: 4px 0 12px 16px;" />
-
-I'm **Nirupam Changmai**, a full-stack developer and AI engineer from
-**Guwahati, Assam**. Building for 5+ years — freelancing since college,
-2+ years in professional roles. Right now: Senior Software Developer at
-TanTech LLC (remote, USA).
-
-## What I do
-
-- **Full-stack product work** — React, TypeScript, Next.js, Node.js, Python,
-  GraphQL. Schema to pixel.
-- **AI engineering** — LLM integrations with OpenAI, Anthropic and Gemini:
-  prompt engineering, function calling, RAG, structured output parsing.
-  MCA with an ML & AI specialization.
-- **Physical products** — I design, color-separate and screen-print textiles,
-  and manage manufacturing for the Watawi apparel brand. Design file to
-  shipped garment.
-- **Where the two meet** — [ThriftBazaar](/projects/thrift-bazaar), a
-  multi-vendor thrift marketplace: commerce software built by someone who
-  also ships the physical product.
-
-## Why the mix works
-
-Printing demands the same discipline as shipping software: plan the layers,
-respect the medium, iterate on proofs, then commit. Except in printing there
-is no hotfix after the ink hits the fabric.
-
-→ Reach me: \`about/contact.md\`
-`
-
-const contactMd = `# Contact
-
-The fastest ways to reach me:
-
--  **Email** — <!-- TODO: NIRUPAM — add email --> nirupamchangmai99@gmail.com
--  **GitHub** — [github.com/nirupamc](https://github.com/nirupamc)
--  **LinkedIn** — [linkedin.com/in/nirupam-changmai-5642651ba](https://www.linkedin.com/in/nirupam-changmai-5642651ba)
--  **Resume** — open \`resume.pdf\` in the tree, or [download it](/resume.pdf)
-
-**Location:** Guwahati, Assam, India (UTC+5:30) — remote-friendly, currently
-working US hours for TanTech.
-
-**Open to:** full-time roles, AI/LLM integration work, and conversations about
-Three.js or screen printing (ideally both).
-
-Response time: usually < 24h.
-`
 
 const tantechMd = `# TanTech LLC — Senior Software Developer
 
@@ -538,39 +439,53 @@ experiments
 const skillsJson = `{
   "name": "nirupam-changmai",
   "version": "2.0.0",
-  "description": "Everything installed in production (my head)",
-  "dependencies": {
-    "react": "*",
-    "typescript": "*",
-    "nextjs": "*",
-    "nodejs": "*",
-    "python": "*",
-    "graphql": "*",
-    "tailwindcss": "*",
-    "websockets": "*"
-  },
-  "aiDependencies": {
-    "openai": "*",
-    "anthropic-claude": "*",
-    "gemini": "*",
-    "prompt-engineering": "*",
-    "function-calling": "*",
-    "rag": "*"
-  },
-  "peerDependencies": {
-    "photoshop": "*",
-    "illustrator": "*",
-    "figma": "*",
-    "screen-printing": "physical",
-    "color-separation": "expert",
-    "video-editing": "*",
-    "aws": "*",
-    "gcp": "*",
-    "docker": "*",
-    "github-actions": "*"
-  },
-  "scripts": {
-    "hire": "open about/contact.md"
+  "groups": {
+    "Applied AI": [
+      "LLM application development",
+      "AI agents",
+      "RAG",
+      "retrieval",
+      "embeddings",
+      "reranking",
+      "evaluation",
+      "document intelligence",
+      "local inference"
+    ],
+    "Backend": [
+      "Python",
+      "FastAPI",
+      "REST APIs",
+      "SQLite",
+      "Alembic",
+      "authentication",
+      "streaming",
+      "concurrency and admission control"
+    ],
+    "AI / Retrieval Infrastructure": [
+      "llama.cpp",
+      "ChromaDB",
+      "BM25",
+      "sentence-transformers",
+      "cross-encoders",
+      "Tesseract",
+      "PyMuPDF"
+    ],
+    "Full Stack": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Tailwind",
+      "Playwright",
+      "browser APIs"
+    ],
+    "Tools / Workflow": [
+      "Git",
+      "Vite",
+      "Shiki",
+      "screen printing",
+      "color separation"
+    ]
   }
 }
 `
@@ -593,6 +508,136 @@ This site borrows joy from open projects. Credit where due:
 
 UI inspired by Visual Studio Code. Not affiliated with Microsoft.
 `
+
+const projectPath = (id: string) => projects.find((project) => project.id === id)?.bodyFileId ?? id
+const projectSummary = (id: string) => projects.find((project) => project.id === id)?.summary ?? ''
+const writingPath = (id: string) => writing.find((entry) => entry.id === id)?.bodyFileId ?? id
+
+const readmeMd = `# Nirupam Changmai
+
+**Applied AI / Backend Engineer**
+
+I build LLM infrastructure, agent systems, retrieval pipelines, document
+intelligence, and production AI backends.
+
+My background also includes full-stack product engineering — from schema to
+pixel — and a parallel practice in creative technology and screen printing.
+
+## Selected Systems
+
+### [Huginn](/${projectPath('huginn')})
+
+${projectSummary('huginn')} Durable execution, resumable runs, tools, approval
+gates, tracing, routing, and memory integration.
+
+### [Syn](/${projectPath('syn')})
+
+${projectSummary('syn')} An OpenAI-compatible gateway with llama.cpp,
+authentication, streaming, admission control, quotas, and model routing.
+
+### [Jung Archive](/${projectPath('jung-archive')})
+
+${projectSummary('jung-archive')} Document intelligence with retrieval,
+reranking, and evaluation built into the loop.
+
+### [Munin](/${projectPath('munin')})
+
+${projectSummary('munin')} Long-term agent memory with semantic retrieval,
+admission, deduplication, consolidation, and auditability.
+
+## More Engineering
+
+**[Aletheia](/${projectPath('aletheia')})** — ${projectSummary('aletheia')}
+
+**[AutoApply](/${projectPath('auto-apply')})** — ${projectSummary('auto-apply')}
+
+**[RagParser](/${projectPath('ragparser')})** — ${projectSummary('ragparser')}
+
+**[Absurd RAG](/${projectPath('absurd-rag')})** — ${projectSummary('absurd-rag')}
+
+## Writing
+
+I document the architecture, failures, experiments, and tradeoffs behind the
+systems I build.
+
+- [Jung Archive](/${writingPath('jung-archive')})
+- [RagParser](/${writingPath('ragparser')})
+- [Running / installing a local LLM](/${writingPath('local-llm')})
+- [Absurd RAG](/${writingPath('absurd-rag')})
+
+## Beyond AI
+
+I started in full-stack product development and still make room for creative
+technology, visual work, music/DJ experiments, and screen printing.
+
+Explore [full-stack projects](/projects/full-stack/nerv-orbital),
+[creative technology](/creative/technology/i-want-to-be-a-dj), and
+[print & design](/creative/print-and-design/gamusa).
+
+## Quick tour
+
+Use the Explorer for the full tree, [about me](/about/me) for the longer
+version, [contact](/about/contact) for professional links, and
+\`skills.json\` for the working capability map.
+
+<sub>UI inspired by Visual Studio Code. Not affiliated with Microsoft.</sub>
+`
+
+const aboutMeMd = `# About me
+
+I'm **Nirupam Changmai**, an Applied AI / Backend Engineer based in
+**Guwahati, Assam**. I started by building web products and full-stack systems:
+React interfaces, APIs, databases, integrations, and the connective tissue
+that turns a product idea into something people can use.
+
+Over time, the backend questions became more interesting. Working with local
+LLMs led me deeper into inference gateways, model interfaces, retrieval
+pipelines, document intelligence, evaluation, and the practical failure modes
+around AI agents. That progression is why my current focus is not just using a
+model API, but building the systems around it: durable execution, memory,
+streaming, admission control, observability, and reliable data boundaries.
+
+Today I work across **Applied AI and backend engineering**. I am especially
+interested in LLM infrastructure, agent runtimes, RAG systems, local
+inference, and the engineering needed to make experiments inspectable and
+repeatable. Python and FastAPI are central to the direction I am building
+toward, alongside the TypeScript and React experience that lets me take a
+system all the way to a usable product.
+
+That history is intentionally not a clean single-track story. Full-stack
+product work is still part of how I think, and I enjoy the boundary between a
+backend system and the interface that makes it useful. Outside software, I
+work with visual design, color separation, screen printing, and occasional
+music/DJ experiments. Those are different ways of thinking about layers,
+constraints, iteration, and craft.
+
+The portfolio keeps all of those threads visible, while putting the current
+specialization first.
+
+→ Reach me: \`about/contact.md\`
+`
+
+const contactMd = `# Contact
+
+For hiring conversations, backend work, Applied AI, or practical LLM systems,
+the fastest ways to reach me are:
+
+- **Email** — [${OWNER.email}](mailto:${OWNER.email})
+- **GitHub** — [github.com/nirupamc](${OWNER.github})
+- **LinkedIn** — [linkedin.com/in/nirupam-changmai-5642651ba](${OWNER.linkedin})
+- **Resume** — open \`resume.pdf\` in the tree, or [download it](/resume.pdf)
+
+**Location:** ${OWNER.location} · Open to remote opportunities.
+
+**Open to:** Applied AI / backend roles, LLM and RAG systems, and product
+engineering work.
+`
+
+const migrationPlaceholder = (title: string) =>
+  `# ${title}\n\n> Project case study content will be migrated in Portfolio Step 3.\n`
+
+const writingPlaceholder = (title: string) =>
+  `# ${title}\n\n> Writing summary and external article link will be migrated in a later portfolio step.\n`
 
 export const files: PortfolioFile[] = [
   {
@@ -686,27 +731,27 @@ export const files: PortfolioFile[] = [
     content: bcaGcuMd,
   },
   {
-    id: 'projects/nerv-orbital',
+    id: 'projects/full-stack/nerv-orbital',
     name: 'nerv-orbital.md',
-    path: 'projects/nerv-orbital.md',
+    path: 'projects/full-stack/nerv-orbital.md',
     language: 'markdown',
     icon: 'md',
     viewer: 'markdown',
     content: nervOrbitalMd,
   },
   {
-    id: 'projects/pwa-attendance',
+    id: 'projects/full-stack/pwa-attendance',
     name: 'pwa-attendance.md',
-    path: 'projects/pwa-attendance.md',
+    path: 'projects/full-stack/pwa-attendance.md',
     language: 'markdown',
     icon: 'md',
     viewer: 'markdown',
     content: pwaAttendanceMd,
   },
   {
-    id: 'projects/thrift-bazaar',
+    id: 'projects/full-stack/thrift-bazaar',
     name: 'thrift-bazaar.md',
-    path: 'projects/thrift-bazaar.md',
+    path: 'projects/full-stack/thrift-bazaar.md',
     language: 'markdown',
     icon: 'md',
     viewer: 'markdown',
@@ -722,32 +767,56 @@ export const files: PortfolioFile[] = [
     content: tantechDashboardMd,
   },
   {
-    id: 'projects/auto-apply',
+    id: 'projects/products/auto-apply',
     name: 'auto-apply.md',
-    path: 'projects/auto-apply.md',
+    path: 'projects/products/auto-apply.md',
     language: 'markdown',
     icon: 'md',
     viewer: 'markdown',
     content: autoApplyMd,
   },
   {
-    id: 'projects/gamusa-reimagined',
-    name: 'gamusa-reimagined.md',
-    path: 'projects/gamusa-reimagined.md',
+    id: 'creative/print-and-design/gamusa',
+    name: 'gamusa.md',
+    path: 'creative/print-and-design/gamusa.md',
     language: 'markdown',
     icon: 'md',
     viewer: 'markdown',
     content: gamusaMd,
   },
   {
-    id: 'projects/kyd-color-separation',
-    name: 'kyd-color-separation.md',
-    path: 'projects/kyd-color-separation.md',
+    id: 'creative/print-and-design/kyd',
+    name: 'kyd.md',
+    path: 'creative/print-and-design/kyd.md',
     language: 'markdown',
     icon: 'md',
     viewer: 'markdown',
     content: kydMd,
   },
+  ...[
+    ['projects/ai-systems/huginn', 'huginn.md', migrationPlaceholder('Huginn')],
+    ['projects/ai-systems/syn', 'syn.md', migrationPlaceholder('Syn')],
+    ['projects/ai-systems/jung-archive', 'jung-archive.md', migrationPlaceholder('Jung Archive')],
+    ['projects/ai-systems/munin', 'munin.md', migrationPlaceholder('Munin')],
+    ['projects/ai-systems/aletheia', 'aletheia.md', migrationPlaceholder('Aletheia')],
+    ['projects/ai-systems/aion', 'aion.md', migrationPlaceholder('AION')],
+    ['projects/ai-systems/ragparser', 'ragparser.md', migrationPlaceholder('RagParser')],
+    ['projects/ai-systems/absurd-rag', 'absurd-rag.md', migrationPlaceholder('Absurd RAG')],
+    ['creative/technology/i-want-to-be-a-dj', 'i-want-to-be-a-dj.md', migrationPlaceholder('I Want to Be a DJ')],
+    ['creative/print-and-design/screen-printing', 'screen-printing.md', migrationPlaceholder('Screen Printing')],
+    ['writing/jung-archive', 'jung-archive.md', writingPlaceholder('Jung Archive')],
+    ['writing/ragparser', 'ragparser.md', writingPlaceholder('RagParser')],
+    ['writing/local-llm', 'local-llm.md', writingPlaceholder('Local LLM')],
+    ['writing/absurd-rag', 'absurd-rag.md', writingPlaceholder('Absurd RAG')],
+  ].map(([id, name, content]) => ({
+    id,
+    name,
+    path: `${id}.md`,
+    language: 'markdown',
+    icon: 'md' as const,
+    viewer: 'markdown' as const,
+    content,
+  })),
   {
     id: 'projects/experiments',
     name: 'experiments.md',
@@ -788,9 +857,31 @@ export const files: PortfolioFile[] = [
 
 export const fileById = new Map(files.map((f) => [f.id, f]))
 
+/** Legacy routes kept working while the Explorer adopts the new IA. */
+export const fileAliases: Record<string, string> = {
+  'projects/nerv-orbital': 'projects/full-stack/nerv-orbital',
+  'projects/pwa-attendance': 'projects/full-stack/pwa-attendance',
+  'projects/thrift-bazaar': 'projects/full-stack/thrift-bazaar',
+  'projects/auto-apply': 'projects/products/auto-apply',
+  'projects/gamusa-reimagined': 'creative/print-and-design/gamusa',
+  'projects/kyd-color-separation': 'creative/print-and-design/kyd',
+}
+
+export function resolveFileId(id: string): string {
+  return fileAliases[id] ?? id
+}
+
+function projectTreeFiles(category: 'ai-systems' | 'products' | 'full-stack' | 'creative-tech' | 'creative'): TreeNode[] {
+  return projects
+    .filter((project) => project.category === category)
+    .sort((a, b) => a.order - b.order)
+    .map((project) => ({ kind: 'file' as const, fileId: project.bodyFileId }))
+}
+
 // Explorer order: folders as listed, then root files.
 // Experience files newest-first.
 export const tree: TreeNode[] = [
+  { kind: 'file', fileId: 'readme' },
   {
     kind: 'folder',
     name: 'about',
@@ -822,18 +913,52 @@ export const tree: TreeNode[] = [
     kind: 'folder',
     name: 'projects',
     children: [
-      { kind: 'file', fileId: 'projects/nerv-orbital' },
-      { kind: 'file', fileId: 'projects/pwa-attendance' },
-      { kind: 'file', fileId: 'projects/thrift-bazaar' },
+      {
+        kind: 'folder',
+        name: 'ai-systems',
+        children: projectTreeFiles('ai-systems'),
+      },
+      {
+        kind: 'folder',
+        name: 'products',
+        children: projectTreeFiles('products'),
+      },
+      {
+        kind: 'folder',
+        name: 'full-stack',
+        children: projectTreeFiles('full-stack'),
+      },
       { kind: 'file', fileId: 'projects/tantech-dashboard' },
-      { kind: 'file', fileId: 'projects/auto-apply' },
-      { kind: 'file', fileId: 'projects/gamusa-reimagined' },
-      { kind: 'file', fileId: 'projects/kyd-color-separation' },
       { kind: 'file', fileId: 'projects/experiments' },
     ],
   },
+  {
+    kind: 'folder',
+    name: 'creative',
+    children: [
+      {
+        kind: 'folder',
+        name: 'technology',
+        children: projectTreeFiles('creative-tech'),
+      },
+      {
+        kind: 'folder',
+        name: 'print-and-design',
+        children: projectTreeFiles('creative'),
+      },
+    ],
+  },
+  {
+    kind: 'folder',
+    name: 'writing',
+    children: [
+      { kind: 'file', fileId: 'writing/jung-archive' },
+      { kind: 'file', fileId: 'writing/ragparser' },
+      { kind: 'file', fileId: 'writing/local-llm' },
+      { kind: 'file', fileId: 'writing/absurd-rag' },
+    ],
+  },
   { kind: 'file', fileId: 'credits' },
-  { kind: 'file', fileId: 'readme' },
   { kind: 'file', fileId: 'skills' },
   { kind: 'file', fileId: 'resume' },
 ]

@@ -1,0 +1,23 @@
+import type { Project } from './types'
+
+/** The single source of truth for project classification and ordering. */
+export const projects: Project[] = [
+  { id: 'huginn', title: 'Huginn', category: 'ai-systems', tier: 'flagship', status: 'unknown', featured: true, order: 1, bodyFileId: 'projects/ai-systems/huginn', summary: 'A durable, model-agnostic runtime for stateful AI agents.' },
+  { id: 'syn', title: 'Syn', category: 'ai-systems', tier: 'flagship', status: 'unknown', featured: true, order: 2, bodyFileId: 'projects/ai-systems/syn', summary: 'A self-hosted, OpenAI-compatible inference gateway and control plane for local LLMs.' },
+  { id: 'jung-archive', title: 'Jung Archive', category: 'ai-systems', tier: 'flagship', status: 'unknown', featured: true, order: 3, bodyFileId: 'projects/ai-systems/jung-archive', summary: 'A local-first document intelligence and evaluated retrieval system built around Carl Jung’s The Undiscovered Self.' },
+  { id: 'munin', title: 'Munin', category: 'ai-systems', tier: 'flagship', status: 'unknown', featured: true, order: 4, bodyFileId: 'projects/ai-systems/munin', summary: 'Long-term memory infrastructure for AI agents.' },
+  { id: 'aletheia', title: 'Aletheia', category: 'ai-systems', tier: 'featured', status: 'unknown', featured: true, order: 5, bodyFileId: 'projects/ai-systems/aletheia', summary: 'Local LLM benchmarking and profiling work.' },
+  { id: 'aion', title: 'AION', category: 'ai-systems', tier: 'featured', status: 'unknown', featured: true, order: 6, bodyFileId: 'projects/ai-systems/aion' },
+  { id: 'ragparser', title: 'RagParser', category: 'ai-systems', tier: 'supporting', status: 'unknown', featured: false, order: 7, bodyFileId: 'projects/ai-systems/ragparser', summary: 'Local-first document normalization for RAG.' },
+  { id: 'absurd-rag', title: 'Absurd RAG', category: 'ai-systems', tier: 'supporting', status: 'unknown', featured: false, order: 8, bodyFileId: 'projects/ai-systems/absurd-rag', summary: 'Earlier local RAG experimentation.' },
+  { id: 'auto-apply', title: 'AutoApply', category: 'products', tier: 'featured', status: 'active', featured: true, order: 9, bodyFileId: 'projects/products/auto-apply', summary: 'An AI-assisted job application platform.', stack: ['LLM function calling', 'Structured parsing', 'Automation'], github: 'https://github.com/nirupamc/auto-apply-' },
+  { id: 'nerv-orbital', title: 'NERV-Orbital', category: 'full-stack', tier: 'supporting', status: 'complete', featured: false, order: 10, bodyFileId: 'projects/full-stack/nerv-orbital', stack: ['Three.js', 'React', 'TypeScript', 'Vite', 'SGP4', 'CelesTrak API'], github: 'https://github.com/nirupamc/evangalion-typeish' },
+  { id: 'thrift-bazaar', title: 'ThriftBazaar', category: 'full-stack', tier: 'supporting', status: 'complete', featured: false, order: 11, bodyFileId: 'projects/full-stack/thrift-bazaar', stack: ['TypeScript', 'Node.js'], github: 'https://github.com/nirupamc/Thrift-store', live: 'https://thrift-store-ncng.vercel.app' },
+  { id: 'pwa-attendance', title: 'PWA Attendance', category: 'full-stack', tier: 'supporting', status: 'complete', featured: false, order: 12, bodyFileId: 'projects/full-stack/pwa-attendance', stack: ['PWA', 'Service Workers', 'QR', 'Geolocation', 'React'], github: 'https://github.com/nirupamc/pwa-attendance' },
+  { id: 'i-want-to-be-a-dj', title: 'I Want to Be a DJ', category: 'creative-tech', tier: 'featured', status: 'unknown', featured: true, order: 13, bodyFileId: 'creative/technology/i-want-to-be-a-dj' },
+  { id: 'gamusa', title: 'Gamusa', category: 'creative', tier: 'supporting', status: 'complete', featured: false, order: 14, bodyFileId: 'creative/print-and-design/gamusa', mediaSlug: 'gamusa' },
+  { id: 'kyd', title: 'KYD', category: 'creative', tier: 'supporting', status: 'active', featured: false, order: 15, bodyFileId: 'creative/print-and-design/kyd', mediaSlug: 'kyd' },
+  { id: 'screen-printing', title: 'Screen Printing', category: 'creative', tier: 'supporting', status: 'unknown', featured: false, order: 16, bodyFileId: 'creative/print-and-design/screen-printing' },
+]
+
+export const projectById = new Map(projects.map((project) => [project.id, project]))
