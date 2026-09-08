@@ -12,50 +12,43 @@ const tantechMd = `# TanTech LLC — Senior Software Developer
 
 **Jan 2026 – Present · Remote (USA)**
 
-## Highlights
+Full-stack product development across React/TypeScript/Next.js applications,
+API integrations, AI-assisted workflows, and internal tools.
+
+## What I worked on
 
 - Architected and shipped **3 React/TypeScript/Next.js applications**
-  end-to-end — **zero critical bugs in production**.
-- **AI integrations** with OpenAI, Anthropic and Gemini APIs: prompt
-  engineering, function calling, structured output parsing.
-- Built **5+ GraphQL/REST integrations**; cut API latency by **40%**.
-- Created a **component library / design system** that cut UI development
-  time by **45%**.
-- **35% performance improvement** via code splitting, lazy loading and
-  memoization.
-- CI/CD pipelines with **GitHub Actions**.
-
-## Tools I've built at TanTech
-
--  **Internal employee-work dashboard** — the team's daily tracking
-  database → [tantech-dashboard](/projects/tantech-dashboard)
--  **PWA attendance system** — QR clock-in/out, geolocation, leave flow
-  → [pwa-attendance](/projects/full-stack/pwa-attendance)
--  **Job-application assistance agent** (in development)
-  → [auto-apply](/projects/products/auto-apply)
-
-## Before / after
-
-The site I inherited and rebuilt — the old version is still up as a museum
-piece: [tantechllc.netlify.app](https://tantechllc.netlify.app)
+  end-to-end, with zero critical production bugs reported in the source
+  material.
+- Integrated OpenAI, Anthropic, and Gemini APIs for prompt workflows,
+  function calling, and structured output parsing.
+- Built **5+ GraphQL/REST integrations**, with a reported **40% API latency
+  reduction**.
+- Created a reusable component library/design system and improved frontend
+  performance with code splitting, lazy loading, and memoization.
+- Built internal product workflows including a dashboard, a PWA attendance
+  system, and the in-development [AutoApply](/projects/products/auto-apply)
+  browser-automation project.
 
 ## Stack
 
-\`React\` · \`TypeScript\` · \`Next.js\` · \`GraphQL\` · \`OpenAI\` · \`Anthropic\` · \`Gemini\` · \`GitHub Actions\`
+React, TypeScript, Next.js, GraphQL, REST APIs, OpenAI, Anthropic, Gemini, and
+GitHub Actions.
+
 `
 
 const xoClothingMd = `# XO Clothing — Web & Digital Operations
 
 **Jul 2025 – Jan 2026**
 
-## Highlights
+## What I worked on
 
 - **Rebuilt the company website** — **+25% organic traffic** within 4 months.
 - Managed the content pipeline across **3 platforms** — **+18% following**.
 - Produced social media content that generated **10M+ views in one month**.
 - Streamlined client communications — **−40% turnaround time**.
 
-## Receipts
+## Evidence
 
 The 10M+ month, documented:
 
@@ -167,26 +160,15 @@ const mcaAmityMd = `# MCA — Machine Learning & AI Specialization
 **Amity University Online · 2023 – 2025**
 
 Master of Computer Applications with a specialization in **Machine Learning
-and Artificial Intelligence** — pursued while working full-time, which is
-its own kind of distributed systems problem.
-
-## Relevant to the day job
-
-The specialization underpins the professional LLM work: understanding what's
-under the API (embeddings, transformers, evaluation) makes prompt
-engineering, RAG design and function-calling schemas less cargo-cult and
-more engineering.
+and Artificial Intelligence**.
 `
 
 const bcaGcuMd = `# BCA — Bachelor of Computer Applications
 
 **Girijananda Chowdhary University · 2020 – 2023**
 
-The foundation years — data structures, databases, networks, and the first
-"it works on my machine" incidents.
-
-Learned at least as much from side projects as from the syllabus; several of
-the experiments in \`projects/experiments.md\` date back to this era.
+Bachelor of Computer Applications. This is the foundation for the later
+full-stack, backend, and AI systems work.
 `
 
 const nervOrbitalMd = `# NERV-Orbital
@@ -707,6 +689,7 @@ persistent run state, tracing, and Munin memory integration.
 ## Links
 
 See [Munin](/projects/ai-systems/munin) for the memory service Huginn can use.
+
 `
 
 const synMd = `# Syn
@@ -762,6 +745,10 @@ routing.
 
 See [Huginn](/projects/ai-systems/huginn) for the agent runtime that can use
 Syn as a model endpoint.
+
+## Related writing
+
+[Read the local LLM infrastructure summary](/writing/local-llm)
 `
 
 const jungArchiveMd = `# Jung Archive
@@ -830,6 +817,10 @@ evidence packs, provenance, and a knowledge graph.
 
 See [RagParser](/projects/ai-systems/ragparser) for the earlier normalization
 layer that led into this system.
+
+## Related writing
+
+[Read the Jung Archive engineering summary](/writing/jung-archive)
 `
 
 const muninMd = `# Munin
@@ -880,6 +871,7 @@ deduplication, reinforcement, contradiction detection, consolidation,
 temporal relevance, and namespace isolation.
 
 See [Huginn](/projects/ai-systems/huginn) for the runtime integration point.
+
 `
 
 const aletheiaMd = `# Aletheia
@@ -971,9 +963,99 @@ which is why the project remains a supporting entry.
 The experiment led toward the more deliberate document normalization in
 [RagParser](/projects/ai-systems/ragparser) and the measured retrieval work in
 [Jung Archive](/projects/ai-systems/jung-archive).
+
+## Related writing
+
+[Read the RagParser engineering summary](/writing/ragparser)
 `
 
-const writingPlaceholder = (title: string) => `# ${title}\n\nA working summary of the project and its engineering decisions.\n`
+const jungArchiveWritingMd = `# Jung Archive
+
+I started this project because I did not want to assume that a plausible RAG
+answer meant the retrieval was good. The article follows the work from a
+single source document through extraction, chunking, dense and lexical
+retrieval, reranking, and evidence inspection.
+
+## What I wrote about
+
+- why retrieval quality needs an explicit evaluation set
+- the difference between dense, BM25, hybrid, and reranked retrieval
+- provenance and evidence packs as debugging tools
+- the practical limits of evaluating a one-document corpus
+
+The measured result was more useful than a generic “hybrid is better” story:
+BM25 beat the basic hybrid run, while reranking moved Hit@1 from **0.433 to
+0.767**. The evaluation also reports **MRR 0.853** and **NDCG@5 0.761**.
+
+## Related system
+
+[Jung Archive](/projects/ai-systems/jung-archive)
+`
+
+const ragParserWritingMd = `# RagParser
+
+PDFs are not documents in the tidy sense a downstream RAG pipeline wants.
+Some contain usable native text, some need OCR, and some produce output that
+looks valid until reading order or layout is inspected.
+
+## What I wrote about
+
+- routing native, OCR, hybrid, empty, suspicious, and failed inputs
+- normalizing extraction into a canonical intermediate representation
+- preserving layout, reading order, and provenance
+- why parser quality is a prerequisite for retrieval quality
+
+The article describes the layer that came before the retrieval evaluation:
+make the input inspectable first, then ask whether search is working.
+
+## Related system
+
+[RagParser](/projects/ai-systems/ragparser)
+`
+
+const localLlmWritingMd = `# Running a Local LLM
+
+This entry is about the practical work of installing and running a local model,
+not a retroactive rewrite of that work as an inference platform.
+
+## What I wrote about
+
+- getting a llama.cpp-based runtime installed and usable
+- hardware and memory constraints that shape model choice
+- CUDA/runtime setup and the difference between “installed” and “serving”
+- the performance reality of local inference
+- the deployment questions that later led toward Syn
+
+The useful lesson was that local inference is a systems problem: model files,
+runtime support, memory, throughput, and an API boundary all matter together.
+
+## Related system
+
+[Syn](/projects/ai-systems/syn)
+`
+
+const absurdRagWritingMd = `# Absurd RAG
+
+Absurd RAG was an earlier local experiment around an Albert Camus corpus. It
+started with the appealingly simple loop—ingest a PDF, split it, embed it,
+search it locally—and exposed how many decisions sit inside that loop.
+
+## What I wrote about
+
+- OCR and PDF ingestion problems
+- chunking and embedding tradeoffs
+- ChromaDB retrieval and the llama.cpp direction
+- what broke before a complete end-to-end system was established
+- why the next iteration needed better document normalization and evaluation
+
+This was lineage, not a finished production system. The lessons led into
+[RagParser](/projects/ai-systems/ragparser) and later the measured retrieval
+work in [Jung Archive](/projects/ai-systems/jung-archive).
+
+## Related system
+
+[Absurd RAG](/projects/ai-systems/absurd-rag)
+`
 
 export const files: PortfolioFile[] = [
   {
@@ -1140,10 +1222,10 @@ export const files: PortfolioFile[] = [
     ['projects/ai-systems/absurd-rag', 'absurd-rag.md', absurdRagMd],
     ['creative/technology/i-want-to-be-a-dj', 'i-want-to-be-a-dj.md', djMd],
     ['creative/print-and-design/screen-printing', 'screen-printing.md', '# Screen Printing\n\nScreen-printing work and process documentation.'],
-    ['writing/jung-archive', 'jung-archive.md', writingPlaceholder('Jung Archive')],
-    ['writing/ragparser', 'ragparser.md', writingPlaceholder('RagParser')],
-    ['writing/local-llm', 'local-llm.md', writingPlaceholder('Local LLM')],
-    ['writing/absurd-rag', 'absurd-rag.md', writingPlaceholder('Absurd RAG')],
+    ['writing/jung-archive', 'jung-archive.md', jungArchiveWritingMd],
+    ['writing/ragparser', 'ragparser.md', ragParserWritingMd],
+    ['writing/local-llm', 'local-llm.md', localLlmWritingMd],
+    ['writing/absurd-rag', 'absurd-rag.md', absurdRagWritingMd],
   ].map(([id, name, content]) => ({
     id,
     name,
