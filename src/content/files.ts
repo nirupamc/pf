@@ -30,9 +30,9 @@ const tantechMd = `# TanTech LLC — Senior Software Developer
 -  **Internal employee-work dashboard** — the team's daily tracking
   database → [tantech-dashboard](/projects/tantech-dashboard)
 -  **PWA attendance system** — QR clock-in/out, geolocation, leave flow
-  → [pwa-attendance](/projects/pwa-attendance)
--  **Autonomous job-application agent** (in development)
-  → [auto-apply](/projects/auto-apply)
+  → [pwa-attendance](/projects/full-stack/pwa-attendance)
+-  **Job-application assistance agent** (in development)
+  → [auto-apply](/projects/products/auto-apply)
 
 ## Before / after
 
@@ -151,7 +151,7 @@ const riyumMd = `# Riyum — Full-Stack Developer
 - **Learned screen printing and color separation here** — this is where the
   printing craft started. The craft I picked up at Riyum became the
   production plate work in
-  [kyd-color-separation](/projects/kyd-color-separation).
+  [kyd](/creative/print-and-design/kyd).
 
 \`\`\`gallery
 riyum
@@ -304,32 +304,44 @@ const tantechDashboardMd = `# TanTech Dashboard
 [Source — github.com/nirupamc/database-t_t](https://github.com/nirupamc/database-t_t)
 `
 
-const autoApplyMd = `# Auto-Apply
+const autoApplyMd = `# AutoApply
 
-> An autonomous job-application agent. **AI agents doing the boring part.**
-> _Status: in development, at **TanTech LLC** — see
-> [experience/tantech](/experience/tantech)._
+> Human-in-the-loop application assistance and browser automation.
 
-## The idea
+## What it is
 
-Applying to jobs is a loop of reading forms, extracting requirements, and
-filling in the same information with slight variations. That's an agent
-problem:
+AutoApply explores the repetitive parts of job applications: finding jobs,
+extracting requirements, tailoring application material, and mapping answers
+onto different browser forms. The system is in development at TanTech LLC.
 
-- **LLM-driven form understanding** — parse arbitrary application forms.
-- **Autonomous form filling** — map profile data onto whatever fields the
-  form invents.
-- **Application submission** — the agent completes the loop end-to-end.
+## Workflow
 
-## Why it matters (to me)
+\`Job discovery → eligibility filtering → JD extraction → resume / cover-letter generation → question engine → browser automation\`
 
-This is the practical edge of my AI work: not a chatbot demo, but an agent
-that perceives (form structure), decides (field mapping) and acts (submits) —
-with all the guardrail and reliability questions that come with autonomy.
+The intended flow uses confidence thresholds and keeps sensitive fields out of
+automatic inference. A person remains responsible for reviewing and deciding
+what is submitted.
+
+## Engineering decisions
+
+- Use structured parsing and LLM function calling for variable form shapes.
+- Treat browser automation as an execution boundary rather than letting a
+  model directly control arbitrary page actions.
+- Add confidence thresholds so uncertain field mappings can return to a human.
+- Keep application data and sensitive fields explicit instead of guessing them.
+
+## Current limitations
+
+- This is a work in progress, not a claim of a finished application platform.
+- Workday, Greenhouse, Lever, and similar sites can change their forms and
+  automation constraints.
+- Anti-bot controls and site terms limit where browser automation is
+  appropriate.
 
 ## Stack
 
-\`LLM function calling\` · \`Structured parsing\` · \`Automation\`
+FastAPI, multi-user authentication, LLM function calling, structured parsing,
+Playwright/Patchright browser automation, and application workflow logic.
 
 [Source — github.com/nirupamc/auto-apply-](https://github.com/nirupamc/auto-apply-)
 `
@@ -633,11 +645,335 @@ the fastest ways to reach me are:
 engineering work.
 `
 
-const migrationPlaceholder = (title: string) =>
-  `# ${title}\n\n> Project case study content will be migrated in Portfolio Step 3.\n`
+const huginnMd = `# Huginn
 
-const writingPlaceholder = (title: string) =>
-  `# ${title}\n\n> Writing summary and external article link will be migrated in a later portfolio step.\n`
+> A durable, model-agnostic runtime for stateful AI agents.
+
+## What it is
+
+Huginn turns a multi-step agent task into a persisted run: typed tools and
+model calls execute as steps, while state and traces remain available when a
+run needs to pause, retry, or resume.
+
+## Why I built it
+
+An agent is difficult to trust when its useful state exists only in a process
+memory or a chat transcript. Huginn explores the runtime layer around the
+model: what ran, what failed, what needs approval, and what can safely resume.
+
+## Architecture
+
+\`Task → Run → Steps → Tool / Model execution → Persistent state + traces\`
+
+The runtime supports typed tool discovery and execution, approval gates,
+retry/error handling, tracing, model routing, and run-pinned model selection.
+It can connect to OpenAI-compatible local or cloud endpoints, discover and
+execute MCP-style tools, and integrate with Munin for memory.
+
+## Engineering decisions
+
+- Persist the run and step boundary so interruption is a recoverable state,
+  not a lost request.
+- Keep model selection separate from execution so a run can be pinned to the
+  backend it started with.
+- Treat tools as typed capabilities with explicit execution boundaries.
+- Make approvals and traces part of the runtime state rather than UI-only
+  conventions.
+
+## Hard problems
+
+Retries need to distinguish an execution error from a step that already
+produced an external side effect. Resuming also requires enough persisted
+context to reconstruct the run without pretending that an interrupted model
+call completed.
+
+## Evaluation / proof
+
+The available project record reports **378 passing tests**.
+
+## Current limitations
+
+- Huginn is not a distributed workflow engine or Kubernetes orchestration
+  platform.
+- Provider and tool behavior still depends on the configured backends.
+- The runtime remains oriented toward local-first and development constraints
+  rather than claiming production-scale orchestration.
+
+## Stack
+
+Typed runtime components, OpenAI-compatible model endpoints, MCP-style tools,
+persistent run state, tracing, and Munin memory integration.
+
+## Links
+
+See [Munin](/projects/ai-systems/munin) for the memory service Huginn can use.
+`
+
+const synMd = `# Syn
+
+> A self-hosted, OpenAI-compatible inference gateway and control plane for
+> local LLMs.
+
+## What it is
+
+Syn puts a stable API and policy layer in front of local inference. Clients use
+OpenAI-shaped endpoints while Syn handles identity, model access, admission,
+quotas, routing, streaming, and usage records.
+
+## Architecture
+
+\`Client → OpenAI-compatible API → Auth / policy → Admission / quota → Routing → llama.cpp → streaming response + usage record\`
+
+The service exposes \`/v1/models\` and \`/v1/chat/completions\`, with both
+non-streaming and SSE streaming responses. Runtime model detection keeps the
+gateway aligned with the models available to the backend.
+
+## Engineering decisions
+
+- Keep the public contract OpenAI-compatible so clients do not need a custom
+  SDK.
+- Put FIFO admission control before inference, with limits for active work,
+  queue size, and queue timeout.
+- Make disconnect handling explicit so abandoned streams do not hold capacity.
+- Record usage durably instead of treating tokens and requests as transient
+  logs.
+- Separate authentication, model policy, quotas, and routing so each can be
+  inspected independently.
+
+## Hard problems
+
+Streaming combines resource ownership with a connection that can disappear at
+any time. Queue timeouts, client disconnects, rate limits, and daily request or
+token quotas all need to settle consistently when the model backend is busy.
+
+## Current limitations
+
+- Syn is a single-machine/local-inference control plane, not a distributed GPU
+  scheduler.
+- It depends on llama.cpp for inference; it is not an inference engine itself.
+- Cloudflare tunneling is a connectivity option, not a substitute for a
+  broader deployment or security model.
+
+## Stack
+
+FastAPI, Python, llama.cpp, OpenAI-compatible HTTP APIs, SSE, API keys,
+authentication, FIFO admission control, quotas, usage accounting, and model
+routing.
+
+See [Huginn](/projects/ai-systems/huginn) for the agent runtime that can use
+Syn as a model endpoint.
+`
+
+const jungArchiveMd = `# Jung Archive
+
+> A local-first document intelligence, retrieval, evaluation, and
+> evidence-inspection system built around Carl Jung's *The Undiscovered Self*.
+
+## What it is
+
+Jung Archive turns a source document into a searchable, inspectable corpus.
+The system keeps document structure, retrieval candidates, reranking, answer
+evidence, and provenance visible instead of treating retrieval as an invisible
+prompting step.
+
+## Architecture
+
+The ingestion path routes native text and OCR through a canonical document IR,
+preserving layout, reading order, and provenance. Retrieval combines Chroma
+dense search with BM25 lexical search, fuses candidates with reciprocal rank
+fusion, and can apply a cross-encoder reranker. Evidence packs and a knowledge
+graph provide additional inspection paths.
+
+## Engineering decisions
+
+- Route native and OCR extraction separately so clean PDFs do not pay an OCR
+  cost unnecessarily.
+- Normalize both paths into one structure-aware IR before chunking.
+- Keep dense and lexical retrieval available as separate baselines.
+- Evaluate reranking independently so an attractive hybrid label does not hide
+  a regression.
+- Preserve spans and provenance with the result so evidence can be inspected.
+
+## Evaluation / proof
+
+The evaluated corpus contains **1 document and 211 chunks**:
+
+| Retriever | Hit@1 |
+| --- | ---: |
+| Dense | 0.433 |
+| BM25 | 0.567 |
+| Hybrid | 0.500 |
+| Hybrid + reranker | 0.767 |
+
+The final evaluation reports **MRR 0.853**, **NDCG@5 0.761**, **17 graph
+nodes**, **84 graph edges**, and **538 evidence spans**. Backend verification
+reports **271 passing tests** and frontend verification reports **34 passing
+tests**.
+
+The useful result is not that hybrid retrieval automatically wins: in this
+evaluation BM25 beats the basic hybrid run. Reranking is what materially
+improves Hit@1. Retrieval quality was measured, not assumed.
+
+## Current limitations
+
+- The evaluation corpus is one document, so the scores do not establish
+  behavior across a broad collection.
+- Extraction and chunking heuristics are tuned to the current source shape.
+- The system is local-first, with evaluation-size limitations that make larger
+  generalization an open question.
+
+## Stack
+
+Native/OCR routing, Tesseract, PyMuPDF, canonical document IR, structure-aware
+chunking, ChromaDB, BM25, reciprocal rank fusion, cross-encoder reranking,
+evidence packs, provenance, and a knowledge graph.
+
+See [RagParser](/projects/ai-systems/ragparser) for the earlier normalization
+layer that led into this system.
+`
+
+const muninMd = `# Munin
+
+> Long-term memory infrastructure for AI agents.
+
+## What it is
+
+Munin is a memory service, not an agent runtime. It persists memory events,
+applies admission and policy decisions, and returns relevant context through
+semantic and temporal retrieval.
+
+## Architecture
+
+\`Agent event → Admission → Dedup / reinforcement / contradiction handling → Persistent memory → semantic + temporal retrieval → Agent context\`
+
+The memory model supports policy, privacy, scoring, auditability, namespace
+isolation, and categories such as working, conversational, episodic, semantic,
+and user knowledge where configured.
+
+## Engineering decisions
+
+- Put admission before persistence so every observed event does not become
+  long-term memory.
+- Handle duplicates and reinforcement as explicit memory operations.
+- Keep contradiction detection visible rather than silently overwriting facts.
+- Combine semantic relevance with temporal relevance for context that is both
+  related and current.
+- Isolate namespaces and retain audit information for inspectable behavior.
+
+## Hard problems
+
+Memory quality is a policy problem as much as a storage problem. A useful
+service must decide what deserves persistence, how repeated observations
+reinforce a memory, and what to return when memories conflict.
+
+## Current limitations
+
+- Memory quality depends on admission and retrieval policies.
+- Semantic contradiction resolution is not perfect.
+- Munin provides memory infrastructure; it does not replace the agent runtime
+  or model provider.
+
+## Stack
+
+Persistent memory events, semantic search, scoring, policy and audit layers,
+deduplication, reinforcement, contradiction detection, consolidation,
+temporal relevance, and namespace isolation.
+
+See [Huginn](/projects/ai-systems/huginn) for the runtime integration point.
+`
+
+const aletheiaMd = `# Aletheia
+
+> Local-first LLM benchmarking and profiling work.
+
+Aletheia explores how local model configuration, runtime behavior, and serving
+choices affect inference. The project belongs in the portfolio as active
+benchmarking/profiling work rather than as a finished serving platform.
+
+## Scope
+
+- compare local model configurations and runtime behavior
+- profile inference characteristics
+- record the tradeoffs involved in local serving
+
+## Current limitations
+
+The available portfolio evidence does not establish a completed benchmark
+suite or a production serving deployment, so no performance number is claimed
+here.
+`
+
+const aionMd = `# AION
+
+AION remains in the project index, but this repository does not contain enough
+verified implementation detail to describe its purpose or technology stack
+responsibly.
+`
+
+const djMd = `# I Want to Be a DJ
+
+> A browser-based creative technology experiment around a 3D DJ controller.
+
+The project explores a DDJ-FLX4-inspired interaction model in the browser,
+with 3D controller work and React / Three.js where implemented. It is kept as
+creative technology rather than presented as an AI or backend system.
+
+## Scope
+
+The portfolio evidence supports the controller and visual interaction
+direction. Audio integration and additional functional controls are treated as
+work in progress where they are not demonstrated by the current project
+record.
+`
+
+const ragParserMd = `# RagParser
+
+> A local-first document normalization and parser layer for RAG pipelines.
+
+## What it is
+
+RagParser solves the problem before retrieval: turning inconsistent document
+inputs into a canonical representation that later systems can chunk, search,
+and cite.
+
+## Pipeline
+
+Documents are classified as **NATIVE**, **OCR**, **HYBRID**, **EMPTY**,
+**SUSPICIOUS**, or **FAILED**. Native extraction and Tesseract OCR feed a
+canonical IR with provenance, layout, structure detection, and reading order.
+
+## Why it matters
+
+Retrieval cannot repair a document that was normalized incorrectly. RagParser
+is the earlier document-normalization layer that led into
+[Jung Archive](/projects/ai-systems/jung-archive), where retrieval and
+evaluation were added around the corpus.
+
+## Current limitations
+
+Classification and structure heuristics remain dependent on the input document
+shapes they were designed around. This is a focused parser layer, not a
+general-purpose document understanding product.
+`
+
+const absurdRagMd = `# Absurd RAG
+
+> Earlier local RAG experimentation around Albert Camus.
+
+Absurd RAG explored a fully local direction for asking questions over PDF
+material: ingestion, OCR, chunking, embeddings, ChromaDB retrieval, and the
+llama.cpp direction for generation.
+
+It is useful engineering lineage rather than a finished production system.
+The work paused before a fully completed end-to-end system was established,
+which is why the project remains a supporting entry.
+
+The experiment led toward the more deliberate document normalization in
+[RagParser](/projects/ai-systems/ragparser) and the measured retrieval work in
+[Jung Archive](/projects/ai-systems/jung-archive).
+`
+
+const writingPlaceholder = (title: string) => `# ${title}\n\nA working summary of the project and its engineering decisions.\n`
 
 export const files: PortfolioFile[] = [
   {
@@ -794,16 +1130,16 @@ export const files: PortfolioFile[] = [
     content: kydMd,
   },
   ...[
-    ['projects/ai-systems/huginn', 'huginn.md', migrationPlaceholder('Huginn')],
-    ['projects/ai-systems/syn', 'syn.md', migrationPlaceholder('Syn')],
-    ['projects/ai-systems/jung-archive', 'jung-archive.md', migrationPlaceholder('Jung Archive')],
-    ['projects/ai-systems/munin', 'munin.md', migrationPlaceholder('Munin')],
-    ['projects/ai-systems/aletheia', 'aletheia.md', migrationPlaceholder('Aletheia')],
-    ['projects/ai-systems/aion', 'aion.md', migrationPlaceholder('AION')],
-    ['projects/ai-systems/ragparser', 'ragparser.md', migrationPlaceholder('RagParser')],
-    ['projects/ai-systems/absurd-rag', 'absurd-rag.md', migrationPlaceholder('Absurd RAG')],
-    ['creative/technology/i-want-to-be-a-dj', 'i-want-to-be-a-dj.md', migrationPlaceholder('I Want to Be a DJ')],
-    ['creative/print-and-design/screen-printing', 'screen-printing.md', migrationPlaceholder('Screen Printing')],
+    ['projects/ai-systems/huginn', 'huginn.md', huginnMd],
+    ['projects/ai-systems/syn', 'syn.md', synMd],
+    ['projects/ai-systems/jung-archive', 'jung-archive.md', jungArchiveMd],
+    ['projects/ai-systems/munin', 'munin.md', muninMd],
+    ['projects/ai-systems/aletheia', 'aletheia.md', aletheiaMd],
+    ['projects/ai-systems/aion', 'aion.md', aionMd],
+    ['projects/ai-systems/ragparser', 'ragparser.md', ragParserMd],
+    ['projects/ai-systems/absurd-rag', 'absurd-rag.md', absurdRagMd],
+    ['creative/technology/i-want-to-be-a-dj', 'i-want-to-be-a-dj.md', djMd],
+    ['creative/print-and-design/screen-printing', 'screen-printing.md', '# Screen Printing\n\nScreen-printing work and process documentation.'],
     ['writing/jung-archive', 'jung-archive.md', writingPlaceholder('Jung Archive')],
     ['writing/ragparser', 'ragparser.md', writingPlaceholder('RagParser')],
     ['writing/local-llm', 'local-llm.md', writingPlaceholder('Local LLM')],
