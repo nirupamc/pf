@@ -197,7 +197,7 @@ export default function ClaudePanel({ mobile }: { mobile?: boolean }) {
               style={{ borderColor: 'var(--portfolio-claudeCard-border)' }}
             >
               <div style={{ color: 'var(--vscode-charts-green)' }}>
-                PROFILE: Nirupam Changmai — Full-Stack · AI:
+                PROFILE: Nirupam Changmai — Applied AI / Backend:
               </div>
               <div className="opacity-60">React + Next.js + Node + LLM APIs +</div>
               <div className="opacity-40">Screen-Printed Textiles ✦ Guwahati</div>

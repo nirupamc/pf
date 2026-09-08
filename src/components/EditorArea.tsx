@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { marked } from 'marked'
 import { useStore } from '../store/useStore'
 import { fileById } from '../content/files'
+import { projects } from '../content/projects'
 import type { PortfolioFile } from '../content/types'
 import { getHighlighter } from '../lib/highlighter'
 import { OWNER } from '../content/meta'
@@ -191,20 +192,49 @@ function CodeView({ file }: { file: PortfolioFile }) {
 function MarkdownOrRaw({ file }: { file: PortfolioFile }) {
   const raw = useStore((s) => s.markdownRaw[file.id])
   const toggle = useStore((s) => s.toggleMarkdownRaw)
+  const project = projects.find((candidate) => candidate.bodyFileId === file.id)
 
   return (
     <div className="relative h-full">
-      <button
-        onClick={() => toggle(file.id)}
-        title={raw ? 'Open Preview' : 'Open Source'}
-        className="absolute right-4 top-2 z-10 flex h-[26px] items-center gap-1 rounded border border-white/15 bg-[color:var(--portfolio-editorAction-background)] px-2 text-[12px] hover:bg-[color:var(--portfolio-editorAction-hoverBackground)]"
-      >
-        <span
-          className={`codicon codicon-${raw ? 'open-preview' : 'go-to-file'} !text-[14px]`}
-          aria-hidden
-        />
-        {raw ? 'Preview' : 'Source'}
-      </button>
+      <div className="absolute right-4 top-2 z-10 flex items-center gap-2">
+        {project?.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} on GitHub`}
+            title={`Open ${project.title} on GitHub`}
+            className="flex h-[26px] items-center gap-1 rounded border border-white/15 bg-[color:var(--portfolio-editorAction-background)] px-2 text-[12px] hover:bg-[color:var(--portfolio-editorAction-hoverBackground)]"
+          >
+            <span className="codicon codicon-github !text-[14px]" aria-hidden />
+            GitHub
+          </a>
+        )}
+        {project?.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open live ${project.title} site`}
+            title={`Open live ${project.title} site`}
+            className="flex h-[26px] items-center gap-1 rounded border border-white/15 bg-[color:var(--portfolio-editorAction-background)] px-2 text-[12px] hover:bg-[color:var(--portfolio-editorAction-hoverBackground)]"
+          >
+            <span className="codicon codicon-globe !text-[14px]" aria-hidden />
+            Live
+          </a>
+        )}
+        <button
+          onClick={() => toggle(file.id)}
+          title={raw ? 'Open Preview' : 'Open Source'}
+          className="flex h-[26px] items-center gap-1 rounded border border-white/15 bg-[color:var(--portfolio-editorAction-background)] px-2 text-[12px] hover:bg-[color:var(--portfolio-editorAction-hoverBackground)]"
+        >
+          <span
+            className={`codicon codicon-${raw ? 'open-preview' : 'go-to-file'} !text-[14px]`}
+            aria-hidden
+          />
+          {raw ? 'Preview' : 'Source'}
+        </button>
+      </div>
       {raw ? <CodeView file={file} /> : <MarkdownPreview file={file} />}
     </div>
   )

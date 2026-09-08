@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../store/useStore'
 
 const ZOOMS = [0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4]
@@ -10,6 +10,8 @@ export default function ImageViewer() {
   const [zoomIdx, setZoomIdx] = useState(3) // 100%
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null)
   const [failed, setFailed] = useState(false)
+  const closeRef = useRef<HTMLButtonElement>(null)
+  const previousFocus = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     setZoomIdx(3)
@@ -24,6 +26,13 @@ export default function ImageViewer() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [setImageView])
+
+  useEffect(() => {
+    if (!imageView) return
+    previousFocus.current = document.activeElement as HTMLElement | null
+    requestAnimationFrame(() => closeRef.current?.focus())
+    return () => previousFocus.current?.focus()
+  }, [imageView])
 
   if (!imageView) return null
   const zoom = ZOOMS[zoomIdx]
@@ -49,6 +58,7 @@ export default function ImageViewer() {
         <span className="truncate">{name}</span>
         <span className="ml-2 text-[11px] opacity-50">(preview)</span>
         <button
+          ref={closeRef}
           className="ml-auto flex h-6 w-6 items-center justify-center rounded hover:bg-white/10"
           onClick={() => setImageView(null)}
           aria-label="Close image preview"
@@ -81,7 +91,7 @@ export default function ImageViewer() {
           >
             Image not found: <code className="font-mono">{imageView.src}</code>
             <br />
-            (asset not added yet — see the TODO list)
+            (this asset is unavailable in the current build)
           </div>
         ) : (
           <img

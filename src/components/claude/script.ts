@@ -26,9 +26,8 @@ export const PRESETS: Preset[] = [
     label: 'Who is this developer?',
     question: 'Who is this developer?',
     answer:
-      '**Nirupam Changmai** — full-stack developer and AI engineer in ' +
-      'Guwahati, Assam. Building for 5+ years — freelancing since college, ' +
-      '2+ years in professional roles. Currently ' +
+      '**Nirupam Changmai** — Applied AI / Backend Engineer in ' +
+      'Guwahati, Assam, building LLM systems and full-stack products. Currently ' +
       '**Senior Software Developer at TanTech LLC** (remote, USA), building ' +
       '`React`/`TypeScript`/`Next.js` products end to end. ' +
       'Career path in `experience/`, newest first.',
@@ -41,7 +40,7 @@ export const PRESETS: Preset[] = [
       'Professional LLM integrations across **OpenAI, Anthropic and Gemini** — ' +
       'prompt engineering, function calling, **RAG**, structured output parsing. ' +
       'His MCA specialized in **ML & AI**. Current side quest: `auto-apply`, an ' +
-      'autonomous job-application agent that parses forms and fills them itself.',
+      'human-in-the-loop application assistant with browser automation.',
   },
   {
     id: 'print',
@@ -67,7 +66,7 @@ export const PRESETS: Preset[] = [
     label: 'Is he available?',
     question: 'Is he available?',
     answer:
-      'Open to full-time roles and AI/LLM integration work. Everything you ' +
+      'Open to Applied AI and backend roles, plus AI/LLM integration work. Everything you ' +
       'need is in `about/contact.md` — email, ' +
       '[GitHub](https://github.com/nirupamc) and ' +
       '[LinkedIn](https://www.linkedin.com/in/nirupam-changmai-5642651ba). ' +

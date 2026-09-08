@@ -15,8 +15,8 @@ export default function Terminal() {
   const setMobileOverlay = useStore((s) => s.setMobileOverlay)
   const openFile = useStore((s) => s.openFile)
   const [lines, setLines] = useState<Line[]>([
-    { text: 'Welcome to nirupam-sh 2.0.0 — a very real shell.', color: 'var(--vscode-terminal-ansiBrightGreen)' },
-    { text: "Type 'help' to see what it pretends to do." },
+    { text: 'Welcome to nirupam-sh 2.0.0 — a portfolio shell.', color: 'var(--vscode-terminal-ansiBrightGreen)' },
+    { text: "Type 'help' to explore the portfolio." },
     { text: '' },
   ])
   const [input, setInput] = useState('')
@@ -50,8 +50,8 @@ export default function Terminal() {
           { text: '  cat <file>        open a file in a tab (e.g. cat contact.md)' },
           { text: '  open resume       open resume.pdf' },
           { text: '  contact           how to reach me' },
-          { text: '  whoami            who am I? (existential)' },
-          { text: '  npm run hire-me   the important one' },
+          { text: '  whoami            show current focus' },
+          { text: '  npm run hire-me   show a quick fit check' },
           { text: '  clear             wipe the slate' },
           { text: '' },
         ])
@@ -94,8 +94,7 @@ export default function Terminal() {
         break
       case 'contact':
         print([
-          // TODO: NIRUPAM — email shows once added to meta.ts
-          { text: '  email:    ' + (OWNER.email || '(coming soon)'), color: 'var(--vscode-terminal-ansiCyan)' },
+          { text: '  email:    ' + (OWNER.email || '(not provided)'), color: 'var(--vscode-terminal-ansiCyan)' },
           { text: '  github:   ' + OWNER.github, color: 'var(--vscode-terminal-ansiCyan)' },
           { text: '  linkedin: ' + OWNER.linkedin, color: 'var(--vscode-terminal-ansiCyan)' },
           { text: '' },
@@ -104,8 +103,8 @@ export default function Terminal() {
       case 'whoami':
         print([
           { text: `${OWNER.name} — ${OWNER.role}, ${OWNER.location}.` },
-          { text: 'React · Next.js · TypeScript · Node.js · Python · LLM APIs.' },
-          { text: 'Also screen-prints textiles. Also made this terminal instead of using a template.' },
+          { text: 'LLM systems · agent runtimes · RAG · document intelligence.' },
+          { text: 'Also screen-prints textiles and builds creative technology.' },
           { text: '' },
         ])
         break

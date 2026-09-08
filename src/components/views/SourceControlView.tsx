@@ -1,12 +1,9 @@
 import { OWNER } from '../../content/meta'
 
-// Fake "changes" list — each row links to a real GitHub repo.
-const changes = [
-  { file: 'evangalion-typeish', status: 'M', color: 'var(--vscode-gitDecoration-modifiedResourceForeground)', url: OWNER.github + '/evangalion-typeish' },
-  { file: 'pwa-attendance', status: 'M', color: 'var(--vscode-gitDecoration-modifiedResourceForeground)', url: OWNER.github + '/pwa-attendance' },
-  { file: 'auto-apply-', status: 'U', color: 'var(--vscode-gitDecoration-untrackedResourceForeground)', url: OWNER.github + '/auto-apply-' },
-  { file: 'database-t_t', status: 'M', color: 'var(--vscode-gitDecoration-modifiedResourceForeground)', url: OWNER.github + '/database-t_t' },
-  { file: 'imposter-syndrome', status: 'D', color: 'var(--vscode-gitDecoration-deletedResourceForeground)', url: OWNER.github },
+const history = [
+  'Flagship AI systems documented',
+  'Technical writing summaries linked',
+  'Full-stack and creative work preserved',
 ]
 
 export default function SourceControlView() {
@@ -20,7 +17,7 @@ export default function SourceControlView() {
             color: 'var(--vscode-input-placeholderForeground)',
           }}
         >
-          Message (Ctrl+Enter to hire {OWNER.name})
+          Portfolio history
         </div>
         <a
           href={OWNER.github}
@@ -39,35 +36,18 @@ export default function SourceControlView() {
         style={{ color: 'var(--vscode-sideBarSectionHeader-foreground)' }}
       >
         <span className="codicon codicon-chevron-down !text-[14px]" aria-hidden />
-        Changes
-        <span
-          className="ml-auto rounded-full px-1.5 text-[11px] font-normal normal-case"
-          style={{ background: 'var(--vscode-badge-background)', color: 'var(--vscode-badge-foreground)' }}
-        >
-          {changes.length}
-        </span>
+        Documented work
       </div>
       <ul>
-        {changes.map((c) => (
-          <li key={c.file}>
-            <a
-              href={c.url}
-              target="_blank"
-              rel="noreferrer"
-              className="flex h-[22px] items-center px-3 hover:bg-[color:var(--vscode-list-hoverBackground)]"
-              title={`Open ${c.file} on GitHub`}
-            >
-              <span className="codicon codicon-repo mr-1.5 !text-[14px] opacity-80" aria-hidden />
-              <span className="truncate">{c.file}</span>
-              <span className="ml-auto pl-2 font-mono text-[12px]" style={{ color: c.color }}>
-                {c.status}
-              </span>
-            </a>
+        {history.map((item) => (
+          <li key={item} className="flex h-[26px] items-center px-3 text-[12px]">
+            <span className="codicon codicon-check mr-1.5 !text-[14px]" style={{ color: 'var(--vscode-charts-green)' }} aria-hidden />
+            <span className="truncate">{item}</span>
           </li>
         ))}
       </ul>
       <p className="px-3 pt-3 text-[11px]" style={{ color: 'var(--vscode-descriptionForeground)' }}>
-        Always shipping. The working tree is never clean.
+        This is a static portfolio view, not live repository state.
       </p>
     </div>
   )

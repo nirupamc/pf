@@ -1,15 +1,17 @@
 import { fileById } from '../../content/files'
 import { projects } from '../../content/projects'
-import type { ProjectTier } from '../../content/types'
+import type { ProjectCategory } from '../../content/types'
 import { useStore } from '../../store/useStore'
 import FileIcon from '../FileIcon'
 
 export default function ProjectsView() {
   const openFile = useStore((s) => s.openFile)
-  const groups: Array<{ tier: ProjectTier; label: string }> = [
-    { tier: 'flagship', label: 'FLAGSHIP SYSTEMS' },
-    { tier: 'featured', label: 'FEATURED WORK' },
-    { tier: 'supporting', label: 'SUPPORTING WORK' },
+  const groups: Array<{ category: ProjectCategory; label: string }> = [
+    { category: 'ai-systems', label: 'AI SYSTEMS' },
+    { category: 'products', label: 'PRODUCTS' },
+    { category: 'full-stack', label: 'FULL STACK' },
+    { category: 'creative-tech', label: 'CREATIVE TECHNOLOGY' },
+    { category: 'creative', label: 'PRINT & DESIGN' },
   ]
 
   return (
@@ -19,12 +21,12 @@ export default function ProjectsView() {
       </p>
       {groups.map((group) => {
         const groupProjects = projects
-          .filter((project) => project.tier === group.tier)
+          .filter((project) => project.category === group.category)
           .sort((a, b) => a.order - b.order)
         return (
-          <section key={group.tier} aria-labelledby={`projects-${group.tier}`}>
+          <section key={group.category} aria-labelledby={`projects-${group.category}`}>
             <h2
-              id={`projects-${group.tier}`}
+              id={`projects-${group.category}`}
               className="border-t px-3 py-2 text-[11px] font-semibold tracking-wide"
               style={{ borderColor: 'var(--vscode-panel-border)', color: 'var(--vscode-descriptionForeground)' }}
             >

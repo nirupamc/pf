@@ -1,21 +1,15 @@
 import { BRAND } from '../../theme/palette'
 
-// "Extensions" = my real toolbox, styled like the marketplace list.
-// "Install count" = years of experience with the tool.
-// TODO: NIRUPAM — adjust years to taste.
+// "Extensions" = the verified toolbox, presented as a static capability view.
 const tools = [
-  { name: 'React', publisher: 'facebook', desc: 'Component-based UIs. My home turf.', years: 2, initial: '⚛', color: BRAND.react },
-  { name: 'TypeScript', publisher: 'microsoft', desc: 'JavaScript that scales (and argues back).', years: 2, initial: 'TS', color: BRAND.typescript },
-  { name: 'Next.js', publisher: 'vercel', desc: 'React with batteries and opinions included.', years: 2, initial: 'N▲', color: BRAND.nextjs },
-  { name: 'Node.js', publisher: 'openjs', desc: 'Server-side JS for APIs and tooling.', years: 2, initial: 'N', color: BRAND.nodejs },
-  { name: 'Python', publisher: 'psf', desc: 'For scripts, backends and ML homework.', years: 2, initial: 'Py', color: BRAND.python },
-  { name: 'LLM APIs', publisher: 'openai · anthropic · google', desc: 'Function calling, RAG, structured output.', years: 2, initial: '✦', color: BRAND.llm },
-  { name: 'GraphQL', publisher: 'graphql', desc: 'Ask for exactly what you need.', years: 2, initial: 'GQ', color: BRAND.graphql },
-  { name: 'Tailwind CSS', publisher: 'tailwindlabs', desc: 'Utility-first styling at speed.', years: 2, initial: 'TW', color: BRAND.tailwind },
-  { name: 'Three.js', publisher: 'mrdoob', desc: 'WebGL without tears. Mostly.', years: 1, initial: '3', color: BRAND.threejs },
-  { name: 'Photoshop', publisher: 'adobe', desc: 'Where the color separations happen.', years: 4, initial: 'Ps', color: BRAND.photoshop },
-  { name: 'Docker', publisher: 'docker', desc: 'Works on my machine — and yours.', years: 1, initial: 'D', color: BRAND.docker },
-  { name: 'GitHub Actions', publisher: 'github', desc: 'CI/CD that saves 4 hours a release.', years: 2, initial: 'GA', color: BRAND.githubActions },
+  { group: 'Applied AI', name: 'LLM systems', desc: 'Agents, RAG, retrieval, evaluation, and local inference.', initial: '✦', color: BRAND.llm },
+  { group: 'Backend', name: 'Python / FastAPI', desc: 'APIs, streaming, authentication, and backend workflows.', initial: 'Py', color: BRAND.python },
+  { group: 'Retrieval / Data', name: 'ChromaDB / BM25', desc: 'Dense, lexical, fused, and reranked retrieval.', initial: 'DB', color: BRAND.graphql },
+  { group: 'Full Stack', name: 'TypeScript / React', desc: 'Product interfaces, Next.js applications, and browser APIs.', initial: 'TS', color: BRAND.typescript },
+  { group: 'Full Stack', name: 'Node.js / GraphQL', desc: 'Server-side JavaScript and typed product APIs.', initial: 'N', color: BRAND.nodejs },
+  { group: 'Tools', name: 'Playwright / Vite', desc: 'Browser automation, development tooling, and testing workflows.', initial: 'PW', color: BRAND.nextjs },
+  { group: 'Creative Technology', name: 'Three.js / WebGL', desc: 'Interactive 3D experiments and visual interfaces.', initial: '3', color: BRAND.threejs },
+  { group: 'Creative Technology', name: 'Screen printing', desc: 'Color separation, production plates, and physical work.', initial: 'Ps', color: BRAND.photoshop },
 ]
 
 export default function ExtensionsView() {
@@ -29,7 +23,7 @@ export default function ExtensionsView() {
             color: 'var(--vscode-input-placeholderForeground)',
           }}
         >
-          Search Extensions in Marketplace
+        Verified capabilities from the portfolio
         </div>
       </div>
       <div
@@ -37,7 +31,7 @@ export default function ExtensionsView() {
         style={{ color: 'var(--vscode-sideBarSectionHeader-foreground)' }}
       >
         <span className="codicon codicon-chevron-down !text-[14px]" aria-hidden />
-        Installed — my stack
+        My toolbox
       </div>
       <ul role="list">
         {tools.map((t) => (
@@ -55,25 +49,12 @@ export default function ExtensionsView() {
             <div className="min-w-0">
               <div className="flex items-baseline gap-1.5">
                 <span className="truncate font-semibold">{t.name}</span>
-                <span className="flex items-center gap-0.5 text-[11px]" style={{ color: 'var(--vscode-descriptionForeground)' }}>
-                  <span className="codicon codicon-cloud-download !text-[11px]" aria-hidden />
-                  {t.years}y
-                </span>
               </div>
               <div className="truncate text-[12px]" style={{ color: 'var(--vscode-descriptionForeground)' }}>
                 {t.desc}
               </div>
               <div className="flex items-center justify-between text-[12px]" style={{ color: 'var(--vscode-descriptionForeground)' }}>
-                <span>{t.publisher}</span>
-                <span
-                  className="rounded-[2px] px-1.5 text-[11px]"
-                  style={{
-                    background: 'var(--vscode-button-background)',
-                    color: 'var(--vscode-button-foreground)',
-                  }}
-                >
-                  Installed
-                </span>
+                <span>{t.group}</span>
               </div>
             </div>
           </li>

@@ -27,9 +27,13 @@ type State =
 
 const BOX_H = 180
 const FLOOR = 8
-const PET_H: Record<PetKind['species'], number> = { panda: 58, totoro: 64 }
-const PET_W = 64 // rough sprite width for edge math
-const CLIMB_TOP = BOX_H - 92 // how high totoro climbs before letting go
+// Source sprites are authored at a much larger pixel size than the original
+// sidebar render. Keep the visual scale in one place so physics and layout
+// use the same dimensions.
+const PET_SCALE = .8
+const PET_H: Record<PetKind['species'], number> = { panda: 58 * PET_SCALE, totoro: 64 * PET_SCALE }
+const PET_W = 64 * PET_SCALE // conservative width for edge and ball math
+const CLIMB_TOP = BOX_H - PET_H.totoro - FLOOR // let Totoro reach the upper wall safely
 const PETS_KEY = 'vsc-portfolio-pets-v2'
 const CYCLE: PetKind[] = [
   { species: 'panda', color: 'black' },
@@ -169,7 +173,17 @@ export default function Pets() {
     ball: null,
     pets: new Map(),
   })
-  const reduced = useRef(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [reducedMotion, setReducedMotion] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReducedMotion(media.matches)
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
 
   useEffect(() => {
     try {
@@ -181,7 +195,7 @@ export default function Pets() {
 
   // one shared rAF drives every pet + the ball
   useEffect(() => {
-    if (reduced.current || !open) return
+    if (reducedMotion || !open) return
     let raf = 0
     let last = performance.now()
 
@@ -331,9 +345,10 @@ export default function Pets() {
 
         setSrc(pet, pet.state)
         pet.el.style.transform = `translate(${pet.x}px, ${-pet.y}px)`
-        // sprites face left natively (vscode-pets convention): flip only the
-        // image when moving right, so the name tooltip never mirrors
-        if (pet.img) pet.img.style.transform = `scaleX(${pet.dir === 1 ? -1 : 1})`
+        // The walking/running assets in this set face right in their native
+        // orientation. Flip only the sprite visual for leftward travel; the
+        // button and tooltip stay unmirrored.
+        if (pet.img) pet.img.style.transform = `scaleX(${pet.dir === -1 ? -1 : 1})`
       }
     }
     raf = requestAnimationFrame(tick)
@@ -354,10 +369,10 @@ export default function Pets() {
       cancelAnimationFrame(raf)
       window.removeEventListener('pets-debug-climb', forceClimb)
     }
-  }, [open])
+  }, [open, reducedMotion])
 
   const throwBall = () => {
-    if (reduced.current) return
+    if (reducedMotion) return
     world.current.ball = {
       x: 8,
       y: 40,
@@ -494,7 +509,7 @@ function PetActor({
     }
     world.current.pets.set(id, rt)
     if (elRef.current) elRef.current.style.transform = `translate(${rt.x}px, 0)`
-    if (imgRef.current) imgRef.current.style.transform = 'scaleX(-1)'
+    if (imgRef.current) imgRef.current.style.transform = 'scaleX(1)'
     return () => {
       world.current.pets.delete(id)
     }

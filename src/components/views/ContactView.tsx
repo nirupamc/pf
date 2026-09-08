@@ -5,7 +5,6 @@ export default function ContactView() {
   const openFile = useStore((s) => s.openFile)
 
   const rows: { icon: string; label: string; href: string; download?: boolean }[] = [
-    // TODO: NIRUPAM — add email to meta.ts to enable the mail row
     ...(OWNER.email
       ? [{ icon: 'mail', label: OWNER.email, href: `mailto:${OWNER.email}` }]
       : []),

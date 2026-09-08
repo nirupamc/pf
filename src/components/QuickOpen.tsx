@@ -28,14 +28,15 @@ export default function QuickOpen() {
   const [query, setQuery] = useState('')
   const [sel, setSel] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
+  const previousFocus = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (visible) {
-      setQuery('')
-      setSel(0)
-      // focus after mount
-      requestAnimationFrame(() => inputRef.current?.focus())
-    }
+    if (!visible) return
+    previousFocus.current = document.activeElement as HTMLElement | null
+    setQuery('')
+    setSel(0)
+    requestAnimationFrame(() => inputRef.current?.focus())
+    return () => previousFocus.current?.focus()
   }, [visible])
 
   const results = useMemo(() => {
@@ -57,7 +58,7 @@ export default function QuickOpen() {
     if (e.key === 'Escape') setQuickOpen(false)
     else if (e.key === 'ArrowDown') {
       e.preventDefault()
-      setSel((s) => Math.min(results.length - 1, s + 1))
+      setSel((s) => Math.max(0, Math.min(results.length - 1, s + 1)))
     } else if (e.key === 'ArrowUp') {
       e.preventDefault()
       setSel((s) => Math.max(0, s - 1))
@@ -95,6 +96,7 @@ export default function QuickOpen() {
             onKeyDown={onKeyDown}
             placeholder="Search files by name (append : to go to line — kidding, there's no line)"
             aria-label="Search files by name"
+            aria-controls="quick-open-results"
             className="w-full rounded-[2px] border px-2 py-[5px] text-[13px] outline-none"
             style={{
               background: 'var(--vscode-input-background)',
@@ -103,7 +105,7 @@ export default function QuickOpen() {
             }}
           />
         </div>
-        <ul className="max-h-[45vh] overflow-y-auto pb-1" role="listbox">
+        <ul id="quick-open-results" className="max-h-[45vh] overflow-y-auto pb-1" role="listbox">
           {results.map(({ f, m }, i) => (
             <li key={f.id} role="option" aria-selected={i === sel}>
               <button

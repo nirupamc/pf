@@ -15,17 +15,17 @@ const tantechMd = `# TanTech LLC — Senior Software Developer
 Full-stack product development across React/TypeScript/Next.js applications,
 API integrations, AI-assisted workflows, and internal tools.
 
-## What I worked on
+## Highlights
 
 - Architected and shipped **3 React/TypeScript/Next.js applications**
-  end-to-end, with zero critical production bugs reported in the source
-  material.
+  end-to-end.
 - Integrated OpenAI, Anthropic, and Gemini APIs for prompt workflows,
   function calling, and structured output parsing.
-- Built **5+ GraphQL/REST integrations**, with a reported **40% API latency
-  reduction**.
+- Built **5+ GraphQL/REST integrations**, reducing API latency by **~40%**.
 - Created a reusable component library/design system and improved frontend
   performance with code splitting, lazy loading, and memoization.
+- Built an internal employee-work tracking dashboard with React, TypeScript,
+  a central work-item database, and workload/progress views.
 - Built internal product workflows including a dashboard, a PWA attendance
   system, and the in-development [AutoApply](/projects/products/auto-apply)
   browser-automation project.
@@ -56,10 +56,6 @@ The 10M+ month, documented:
 xo-clothing
 \`\`\`
 
-## What this taught me
-
-Distribution is a product problem. The loop that ships features — measure,
-hypothesize, ship, re-measure — also grows an audience.
 `
 
 const freelanceMd = `# Freelance — Full-Stack Developer
@@ -98,7 +94,7 @@ const watawiMd = `# Watawi — Product Development & Manufacturing
 Taking products from **design file to physically shipped garment** for the
 Watawi apparel brand.
 
-## What I own
+## Highlights
 
 - **Drops** — planning and executing product releases.
 - **Vendor coordination** — fabrics, inks, blanks, finishing.
@@ -120,24 +116,23 @@ Pieces I took from design file to production:
 watawi
 \`\`\`
 
-<!-- TODO: NIRUPAM — brand link -->
 `
 
 const riyumMd = `# Riyum — Full-Stack Developer
 
 **Mar 2024 – Jan 2025 · Guwahati**
 
-## Highlights
+## Engineering
 
 - Built a **production LMS** — React, TypeScript, GraphQL — serving
   **120+ users with zero downtime**.
 - Built a **real-time communications platform** — Node.js + WebSockets,
   **30+ concurrent users**, **−35% response time**.
 - Created a **reusable component library** — **−45% feature dev time**.
-- **Jest / React Testing Library** suites — **15 critical bugs** caught
-  before release.
+- **Jest / React Testing Library** suites caught **15 critical bugs** before
+  release.
 
-## The creative-production side
+## Creative / production
 
 - **Shot and edited 25+ social videos** — camera work and the edit, both mine.
 - **Designed posters** for their classes, plus **30+ branded assets**.
@@ -200,7 +195,6 @@ const nervOrbitalMd = `# NERV-Orbital
 \`Three.js\` · \`React\` · \`TypeScript\` · \`Vite\` · \`SGP4\` · \`CelesTrak API\`
 
 [Source — github.com/nirupamc/evangalion-typeish](https://github.com/nirupamc/evangalion-typeish)
-<!-- NOTE: rename repo to nerv-orbital first -->
 `
 
 const pwaAttendanceMd = `# PWA Attendance
@@ -382,23 +376,6 @@ Final artwork and prints from the separation work:
 kyd
 \`\`\`
 
-## Toggle the plates
-
-Once the per-plate exports land, this section becomes interactive — a
-Photoshop-style layer stack where each eye icon shows or hides one real
-ink plate.
-
-\`\`\`separation
-{ "folder": "kyd/plates" }
-\`\`\`
-
-<!-- TODO: NIRUPAM — export the real plates (transparent PNGs, same canvas size)
-     into public/images/kyd/plates/, ordered by filename:
-     0-underbase.png, 1-red.png, 2-black.png … the viewer appears automatically. -->
-
-_Plate exports in progress — the gallery above shows the finished prints
-in the meantime._
-
 ## Why it's on a developer portfolio
 
 Separation is layer-based thinking under hard constraints — z-order,
@@ -428,6 +405,41 @@ dangerous sentence.
 \`\`\`gallery
 experiments
 \`\`\`
+`
+
+const screenPrintingMd = `# Screen Printing
+
+> A hands-on practice in turning digital artwork into physical layers of ink.
+
+Screen printing is where visual design becomes a production problem. A file
+has to survive separation, screens, ink, registration, fabric, and the small
+decisions that determine whether the final print feels intentional.
+
+## The process
+
+The work begins with preparing artwork for a physical result: separating
+colors, deciding what each layer needs to do, and keeping the print order in
+mind. From there, the process moves through screens or plates, registration,
+test prints, and iteration until the layers sit together as one image.
+
+That workflow is visible in the production work for [KYD](/creative/print-and-design/kyd)
+and the visual adaptation explored in [Gamusa](/creative/print-and-design/gamusa).
+
+## What I like about it
+
+The constraints are tangible. A misregistered layer cannot be patched after
+the fact, and a color that looks right on screen still has to work as ink on
+fabric. The process rewards preparation, careful iteration, and respect for
+the material.
+
+It is a different medium from software, but the thinking is familiar: make the
+layers explicit, understand the constraints, test an assumption, and improve
+the result one pass at a time.
+
+## Related work
+
+- [Gamusa, Reimagined](/creative/print-and-design/gamusa)
+- [KYD — Color Separation](/creative/print-and-design/kyd)
 `
 
 const skillsJson = `{
@@ -539,6 +551,17 @@ reranking, and evaluation built into the loop.
 ${projectSummary('munin')} Long-term agent memory with semantic retrieval,
 admission, deduplication, consolidation, and auditability.
 
+## Creative Technology
+
+### [AION](/${projectPath('aion')})
+
+${projectSummary('aion')} Import, enrichment, transition scoring, and
+optimized DJ flows.
+
+### [I Want to Be a DJ](/${projectPath('i-want-to-be-a-dj')})
+
+An interactive 3D controller experiment for the browser.
+
 ## More Engineering
 
 **[Aletheia](/${projectPath('aletheia')})** — ${projectSummary('aletheia')}
@@ -579,36 +602,50 @@ version, [contact](/about/contact) for professional links, and
 
 const aboutMeMd = `# About me
 
-I'm **Nirupam Changmai**, an Applied AI / Backend Engineer based in
-**Guwahati, Assam**. I started by building web products and full-stack systems:
-React interfaces, APIs, databases, integrations, and the connective tissue
-that turns a product idea into something people can use.
+I'm **Nirupam Changmai**, an **Applied AI / Backend Engineer** based in
+**Guwahati, Assam**. I build the systems around useful model behavior: runtimes,
+inference boundaries, retrieval pipelines, and backend services that are easier
+to inspect when they fail.
 
-Over time, the backend questions became more interesting. Working with local
-LLMs led me deeper into inference gateways, model interfaces, retrieval
-pipelines, document intelligence, evaluation, and the practical failure modes
-around AI agents. That progression is why my current focus is not just using a
-model API, but building the systems around it: durable execution, memory,
-streaming, admission control, observability, and reliable data boundaries.
+## What I build
 
-Today I work across **Applied AI and backend engineering**. I am especially
-interested in LLM infrastructure, agent runtimes, RAG systems, local
-inference, and the engineering needed to make experiments inspectable and
-repeatable. Python and FastAPI are central to the direction I am building
-toward, alongside the TypeScript and React experience that lets me take a
-system all the way to a usable product.
+My current focus is LLM infrastructure, agent runtimes, local inference,
+RAG and document intelligence. That includes durable execution, memory,
+streaming, admission control, provenance, and evaluation—not just calling a
+model API and hoping the answer looks plausible.
 
-That history is intentionally not a clean single-track story. Full-stack
-product work is still part of how I think, and I enjoy the boundary between a
-backend system and the interface that makes it useful. Outside software, I
-work with visual design, color separation, screen printing, and occasional
-music/DJ experiments. Those are different ways of thinking about layers,
-constraints, iteration, and craft.
+I work mainly with Python and FastAPI on the backend, alongside the TypeScript
+and React experience that lets me carry a system through to a usable interface.
 
-The portfolio keeps all of those threads visible, while putting the current
-specialization first.
+## How I got here
 
-→ Reach me: \`about/contact.md\`
+I started with full-stack product work: React interfaces, APIs, databases,
+integrations, and the connective tissue that turns a product idea into
+something people can use. The backend questions became more interesting over
+time, especially when I began running local LLMs and had to understand the
+runtime, hardware, API, and failure modes around them.
+
+That progression led from local inference experiments into gateways, retrieval
+systems, document parsing, agent execution, and long-term memory. I like work
+where the interesting part is making a boundary reliable and making the
+system's behavior visible enough to improve.
+
+## What I care about technically
+
+I care about durable state instead of lost runs, evidence instead of vague
+confidence, and explicit constraints instead of hidden magic. Evaluation,
+provenance, inspectable data boundaries, and local-first experimentation keep
+showing up in the projects I build because they make difficult systems easier
+to reason about.
+
+## Outside the backend
+
+Full-stack product work is still part of how I think, and so are visual design,
+music intelligence, DJ experiments, color separation, and screen printing. They
+are not a separate persona from the engineer in the rest of this portfolio:
+they are other ways of thinking about layers, constraints, iteration, and craft.
+
+→ Reach me: [about/contact.md](/about/contact)
 `
 
 const contactMd = `# Contact
@@ -876,97 +913,328 @@ See [Huginn](/projects/ai-systems/huginn) for the runtime integration point.
 
 const aletheiaMd = `# Aletheia
 
-> Local-first LLM benchmarking and profiling work.
+> A local-first workspace for comparing model configurations and understanding
+> how runtime choices change inference behavior.
 
-Aletheia explores how local model configuration, runtime behavior, and serving
-choices affect inference. The project belongs in the portfolio as active
-benchmarking/profiling work rather than as a finished serving platform.
+Aletheia is about the layer between “the model runs” and “the model is useful.”
+It keeps configuration, runtime behavior, profiling, and serving questions
+together so local inference can be compared deliberately.
 
-## Scope
+## What I am measuring
 
-- compare local model configurations and runtime behavior
-- profile inference characteristics
-- record the tradeoffs involved in local serving
+- how model and runtime configuration changes behavior
+- how context size, maximum output, and temperature affect a run when configured
+- latency and throughput observations under local hardware constraints
+- the practical difference between an installed runtime and a usable service
 
-## Current limitations
+## How a benchmark run works
 
-The available portfolio evidence does not establish a completed benchmark
-suite or a production serving deployment, so no performance number is claimed
-here.
+The working direction is to hold a model/runtime combination and its settings
+explicit, run a comparable workload, and record the behavior rather than
+remembering a single impressive result. That makes configuration tradeoffs
+visible before they become serving assumptions.
+
+## Why I built it
+
+Local models are constrained by memory, runtime support, hardware, and the
+shape of the API around them. Aletheia is a place to understand those
+constraints and the optimization choices they force.
+
+## Current state
+
+This remains active benchmarking and profiling work, not a claim of a finished
+benchmark suite or a distributed serving platform. Its questions led naturally
+toward the gateway and policy work in [Syn](/projects/ai-systems/syn).
+
+## Stack
+
+Local LLM runtimes, model profiling, benchmark configuration, inference
+serving, and runtime observation.
 `
 
 const aionMd = `# AION
 
-AION remains in the project index, but this repository does not contain enough
-verified implementation detail to describe its purpose or technology stack
-responsibly.
+> A browser-based music intelligence and DJ workflow system.
+
+## What it is
+
+AION imports a music library, enriches tracks with musical metadata, analyzes
+the library visually, scores DJ transitions, recommends what should come next,
+and generates optimized multi-track DJ flows. It started as a Spotify playlist
+and DJ-sorting idea before growing into a provider-independent musical
+intelligence platform.
+
+## Why I built it
+
+DJ decisions often depend on several signals at once: BPM, key, energy, mood,
+vibe, and the role a track should play in a set. AION turns those signals into
+inspectable recommendations instead of leaving the next-track decision to a
+single opaque similarity score.
+
+## Architecture
+
+The system is a modular monolith with provider-independent domain models. Its
+main flow is:
+
+\`Provider import → Canonical Track Model → Metadata Enrichment → Music Theory
+→ Mood / Vibe Inference → Library DNA → Transition Intelligence → Best Next
+Track → Smart Flow → Saved Flows / Export\`
+
+Spotify occurrences are normalized into canonical tracks, then enriched through
+MusicBrainz, Soundcharts, and GetSongBPM. The domain layer does not depend on a
+single provider's response shape.
+
+## Music intelligence
+
+Tracks can carry BPM, key, energy, Camelot mapping, harmonic compatibility,
+mood/vibe inference, and a set role. Each value keeps provenance and confidence
+where available, so missing or weaker enrichment remains visible in the result.
+
+Library DNA turns those track-level signals into a visual view of the
+collection, while the analysis layers provide the inputs for recommendations
+and sequencing.
+
+## Transition intelligence
+
+A transition receives a score from 0–100 with a visible breakdown:
+
+- Harmonic compatibility — 30%
+- BPM compatibility — 25%
+- Energy compatibility — 20%
+- Vibe similarity — 10%
+- Mood similarity — 10%
+- Set-role compatibility — 5%
+
+Recommendations include reasons, warnings, and the component scores, with
+maintain, build, and drop intents available for the transition context.
+
+## Smart Flow
+
+Smart Flow uses beam-search sequencing to explore several possible track orders
+instead of greedily taking the best next track. A flow can target a length and
+an energy shape: maintain, build, drop, wave, peak_middle, or peak_end.
+
+The objective combines transition quality and energy shape:
+
+\`0.5 × average transition score + 0.3 × minimum transition score + 0.2 ×
+energy-shape fit\`
+
+Saved flows support CRUD operations and export to TXT, CSV, and JSON. A Spotify
+playlist export path exists but is currently blocked by a live API 403.
+
+## Explainability
+
+AION keeps the source, confidence, analysis/model version, transition
+components, recommendation reasons, and missing-data warnings close to the
+result. That makes it possible to inspect why a track was recommended and
+which parts of the decision are still heuristic.
+
+## Proof / current system
+
+- **343 backend tests passing**
+- Frontend typecheck passing
+- Frontend build passing
+- **3,186 canonical tracks** from **3,211 Spotify occurrences**
+- **25 Soundcharts-enriched tracks** (~0.8%)
+
+The low Soundcharts coverage is part of the system's current reality, not a
+number hidden behind the analytics UI.
+
+## Stack
+
+Frontend: Next.js 14, React 18, TypeScript, Tailwind CSS, and Recharts.
+
+Backend: FastAPI, Python 3.11+, SQLAlchemy 2, and Alembic.
+
+Database: SQLite.
+
+Providers: Spotify, Soundcharts, GetSongBPM, and MusicBrainz.
+
+Architecture principle: modular monolith with provider-independent domain
+models.
+
+## Current limitations
+
+- Enrichment coverage is currently low.
+- No phrase detection, beat-grid alignment, cue-point detection, waveform
+  analysis, or vocal-clash detection yet.
+- Mood and vibe inference remains heuristic.
+- Spotify playlist export is blocked by a live API 403.
+- The interface is currently desktop-first.
 `
 
 const djMd = `# I Want to Be a DJ
 
-> A browser-based creative technology experiment around a 3D DJ controller.
+> A browser-based DJ application experiment built around a DDJ-FLX4-inspired
+> 3D controller.
 
-The project explores a DDJ-FLX4-inspired interaction model in the browser,
-with 3D controller work and React / Three.js where implemented. It is kept as
-creative technology rather than presented as an AI or backend system.
+I started this to explore what a familiar piece of music hardware feels like
+when its interaction model is rebuilt in the browser. Tribe XR was an
+inspiration, but the goal is a controller that remains usable as software.
 
-## Scope
+## Why I started it
 
-The portfolio evidence supports the controller and visual interaction
-direction. Audio integration and additional functional controls are treated as
-work in progress where they are not demonstrated by the current project
-record.
+The DDJ-FLX4 is a useful reference because its layout is legible: two decks,
+transport controls, jog wheels, faders, and knobs all have a physical place.
+Rebuilding that relationship in a browser makes the visual model, hit areas,
+and interaction state part of the same engineering problem.
+
+## What exists today
+
+- a browser-based controller interface
+- a DDJ-FLX4-inspired layout and interaction direction
+- 3D controller work built with React and Three.js
+
+## 3D controller reconstruction
+
+The controller is being built as a collection of parts rather than one
+monolithic model. Knobs, faders, jog wheels, and buttons need to be
+individually addressable so they can animate, receive focus, and expose state
+without turning every interaction into a mesh-wide transform. The asset work
+is therefore animation-ready reconstruction: establish proportions, separate
+the controls, and keep the browser scene responsive enough for direct input.
+
+## Interaction model
+
+Physical gestures map to browser interactions: pointer targets sit over the
+controls, visual positions reflect the current value, and the scene provides
+feedback as a user drags, clicks, or turns a control. Preserving usable
+interaction zones matters as much as matching the reference silhouette.
+
+## What makes it hard
+
+The difficult work is reconstructing proportions from a physical reference,
+separating controls cleanly, and coordinating visual state with control state.
+A beautiful model that cannot be reached or understood by a pointer is not a
+working controller.
+
+## What I am exploring next
+
+Audio integration, more functional controls, and a richer DJ workflow remain
+in progress. They are deliberately not presented as implemented features.
+
+## Stack
+
+React, Three.js, browser interaction, and 3D controller work.
 `
 
 const ragParserMd = `# RagParser
 
 > A local-first document normalization and parser layer for RAG pipelines.
 
-## What it is
+## The problem
 
-RagParser solves the problem before retrieval: turning inconsistent document
-inputs into a canonical representation that later systems can chunk, search,
-and cite.
+PDFs are not documents in the clean logical sense a RAG pipeline wants. A page
+may contain selectable text, a scan, a mixture of both, or almost nothing
+useful. Treating every page as the same input makes later chunking and
+retrieval inherit silent extraction errors.
 
-## Pipeline
+## Routing
 
-Documents are classified as **NATIVE**, **OCR**, **HYBRID**, **EMPTY**,
-**SUSPICIOUS**, or **FAILED**. Native extraction and Tesseract OCR feed a
-canonical IR with provenance, layout, structure detection, and reading order.
+RagParser classifies each page as **NATIVE**, **OCR**, **HYBRID**, **EMPTY**,
+**SUSPICIOUS**, or **FAILED**. Native pages stay on the PyMuPDF path; scanned
+regions route through Tesseract; hybrid pages preserve both signals. Empty,
+suspicious, and failed outcomes remain explicit diagnostics instead of being
+silently indexed.
 
-## Why it matters
+## Canonical IR
 
-Retrieval cannot repair a document that was normalized incorrectly. RagParser
-is the earlier document-normalization layer that led into
+Every route becomes one canonical intermediate representation. That IR carries
+text blocks, page identity, reading order, layout information, and extraction
+diagnostics so downstream code can operate on a stable shape without knowing
+which extraction path produced it.
+
+## Layout and structure
+
+The parser detects reading order and structural cues such as headings,
+headers, footers, and page numbers. Those cues let later chunkers preserve
+document hierarchy instead of cutting through a heading or repeating a footer
+as if it were content.
+
+## Provenance
+
+Each extracted unit remains traceable to its source page and region. That
+provenance is essential for debugging a bad chunk and for showing evidence
+when a retrieval result is inspected.
+
+## Why it matters for RAG
+
+Retrieval cannot repair bad normalization. RagParser was deliberately designed
+as a standalone parser before retrieval, then became the foundation for
 [Jung Archive](/projects/ai-systems/jung-archive), where retrieval and
-evaluation were added around the corpus.
+evaluation were added around a corpus.
 
-## Current limitations
+## Validation and limitations
 
-Classification and structure heuristics remain dependent on the input document
-shapes they were designed around. This is a focused parser layer, not a
-general-purpose document understanding product.
-`
-
-const absurdRagMd = `# Absurd RAG
-
-> Earlier local RAG experimentation around Albert Camus.
-
-Absurd RAG explored a fully local direction for asking questions over PDF
-material: ingestion, OCR, chunking, embeddings, ChromaDB retrieval, and the
-llama.cpp direction for generation.
-
-It is useful engineering lineage rather than a finished production system.
-The work paused before a fully completed end-to-end system was established,
-which is why the project remains a supporting entry.
-
-The experiment led toward the more deliberate document normalization in
-[RagParser](/projects/ai-systems/ragparser) and the measured retrieval work in
-[Jung Archive](/projects/ai-systems/jung-archive).
+By milestone M5, the test suite reached **142 passed, 2 skipped**. The
+classification and structure heuristics remain dependent on the input shapes
+they were designed around; this is a focused parser layer, not a general
+document-understanding platform.
 
 ## Related writing
 
 [Read the RagParser engineering summary](/writing/ragparser)
+
+`
+
+const absurdRagMd = `# Absurd RAG
+
+> A fully local RAG experiment around Albert Camus.
+
+## Why I built it
+
+I wanted a local question-answering loop over a small literary corpus, without
+outsourcing the documents or inference to a hosted service. The project was a
+useful way to make every stage visible: what entered the system, how it was
+split, what was embedded, and what a local model could retrieve.
+
+## Corpus
+
+The corpus contained **five PDFs**. Document quality quickly became part of
+the project: some pages had usable text while *The Fall* required OCR. That
+made it impossible to treat PDF extraction as a single reliable operation.
+
+## Pipeline
+
+The pipeline moved from PDF ingestion with **PyMuPDF** to page
+classification, OCR/Tesseract routing where needed, and structure-aware
+chunking. It produced **840 chunks**, generally **100–900 tokens** with most
+chunks around **400–700 tokens** and roughly **50 tokens of overlap**. Chunks
+were embedded with **all-MiniLM-L6-v2** and stored in **ChromaDB**. The intended
+generation direction was local inference through **llama.cpp**.
+
+## What broke
+
+Scanned pages, inconsistent extraction, and OCR output exposed chunk-quality
+problems that retrieval alone could not hide. The embeddings stage then ran
+into environment and runtime issues on Windows, and the experiment paused
+before a polished end-to-end system was established. Those failures were
+useful signals: the ingestion boundary needed its own design and tests.
+
+## What I learned
+
+The project made document normalization a first-class problem. Page routing,
+provenance, and structure-aware chunks mattered more than adding another
+retrieval trick. That insight led directly to a standalone parser.
+
+## Project lineage
+
+**Absurd RAG → [RagParser](/projects/ai-systems/ragparser) → [Jung Archive](/projects/ai-systems/jung-archive)**
+
+## Current state
+
+Absurd RAG stopped at the embeddings/runtime stage rather than becoming a
+production RAG system. It remains an important precursor project: a concrete
+experiment that shaped the document intelligence work that followed.
+
+## Stack
+
+PyMuPDF, Tesseract, structure-aware chunking, ChromaDB,
+all-MiniLM-L6-v2, and the llama.cpp local-inference direction.
+
+## Related writing
+
+[Read the Absurd RAG engineering summary](/writing/absurd-rag)
 `
 
 const jungArchiveWritingMd = `# Jung Archive
@@ -1217,11 +1485,11 @@ export const files: PortfolioFile[] = [
     ['projects/ai-systems/jung-archive', 'jung-archive.md', jungArchiveMd],
     ['projects/ai-systems/munin', 'munin.md', muninMd],
     ['projects/ai-systems/aletheia', 'aletheia.md', aletheiaMd],
-    ['projects/ai-systems/aion', 'aion.md', aionMd],
+    ['creative/technology/aion', 'aion.md', aionMd],
     ['projects/ai-systems/ragparser', 'ragparser.md', ragParserMd],
     ['projects/ai-systems/absurd-rag', 'absurd-rag.md', absurdRagMd],
     ['creative/technology/i-want-to-be-a-dj', 'i-want-to-be-a-dj.md', djMd],
-    ['creative/print-and-design/screen-printing', 'screen-printing.md', '# Screen Printing\n\nScreen-printing work and process documentation.'],
+    ['creative/print-and-design/screen-printing', 'screen-printing.md', screenPrintingMd],
     ['writing/jung-archive', 'jung-archive.md', jungArchiveWritingMd],
     ['writing/ragparser', 'ragparser.md', ragParserWritingMd],
     ['writing/local-llm', 'local-llm.md', localLlmWritingMd],
@@ -1281,6 +1549,7 @@ export const fileAliases: Record<string, string> = {
   'projects/pwa-attendance': 'projects/full-stack/pwa-attendance',
   'projects/thrift-bazaar': 'projects/full-stack/thrift-bazaar',
   'projects/auto-apply': 'projects/products/auto-apply',
+  'projects/ai-systems/aion': 'creative/technology/aion',
   'projects/gamusa-reimagined': 'creative/print-and-design/gamusa',
   'projects/kyd-color-separation': 'creative/print-and-design/kyd',
 }
@@ -1346,7 +1615,6 @@ export const tree: TreeNode[] = [
         name: 'full-stack',
         children: projectTreeFiles('full-stack'),
       },
-      { kind: 'file', fileId: 'projects/tantech-dashboard' },
       { kind: 'file', fileId: 'projects/experiments' },
     ],
   },

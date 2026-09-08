@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useStore } from './store/useStore'
 import { fileById, resolveFileId } from './content/files'
@@ -107,7 +107,7 @@ export default function App() {
         {/* Wallpaper lives at the COLUMN level (sibling of the scroll containers,
             behind TabBar/Terminal which have opaque backgrounds) so scrolling,
             tab switches and panel toggles never move it. */}
-        <div className="relative flex min-w-0 flex-1 flex-col bg-vsc-editor">
+        <main className="relative flex min-w-0 flex-1 flex-col bg-vsc-editor">
           <Wallpaper />
           <div className="relative z-10 flex min-h-0 flex-1 flex-col">
             <TabBar />
@@ -120,7 +120,7 @@ export default function App() {
               </div>
             )}
           </div>
-        </div>
+        </main>
         {claudeVisible && (
           <div className="hidden w-[310px] shrink-0 border-l border-vsc-border xl:block">
             <Suspense fallback={<div className="h-full bg-vsc-sidebar" />}>
@@ -176,6 +176,23 @@ function MobileSheet({
   children: React.ReactNode
 }) {
   const setMobileOverlay = useStore((s) => s.setMobileOverlay)
+  const sheetRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOverlay(null)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    requestAnimationFrame(() => {
+      sheetRef.current?.querySelector<HTMLElement>('button, input, a, [tabindex="0"]')?.focus()
+    })
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      previous?.focus()
+    }
+  }, [setMobileOverlay])
+
   return (
     <div className="fixed inset-0 z-40 md:hidden" role="dialog" aria-modal="true">
       <div
@@ -183,6 +200,7 @@ function MobileSheet({
         onClick={() => setMobileOverlay(null)}
       />
       <div
+        ref={sheetRef}
         className={
           side === 'left'
             ? 'absolute bottom-12 left-0 top-0 w-[280px] max-w-[85vw] shadow-xl'

@@ -5,8 +5,7 @@ import { fileById } from '../content/files'
 /**
  * Decorative editor-background wallpaper, VS Code custom-background style:
  * right-aligned, low opacity, editor pane only, never clickable.
- * Swap the art by replacing public/wallpaper.png.
- * TODO: NIRUPAM — supply image
+ * Swap the art by replacing public/wallpaper.webp.
  */
 export default function Wallpaper() {
   const wallpaperOn = useStore((s) => s.wallpaperOn)
@@ -28,7 +27,7 @@ export default function Wallpaper() {
       {/* anchored bottom-right of the editor column: stable under scroll,
           tab switches and panel toggles (the terminal simply overlaps it) */}
       <img
-        src="/wallpaper.png"
+        src="/wallpaper.webp"
         alt=""
         onError={() => setMissing(true)}
         className="absolute bottom-0 right-0 h-[96%] max-w-[96%] object-contain object-right-bottom transition-opacity duration-300"

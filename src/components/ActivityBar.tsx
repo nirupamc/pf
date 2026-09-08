@@ -57,14 +57,13 @@ export default function ActivityBar() {
           <span className="codicon codicon-github !text-[24px]" aria-hidden />
         </a>
         <Item view="contact" icon="account" label="Contact" />
-        <button
+        <span
           className="flex h-12 w-12 items-center justify-center border-l-2 border-transparent"
           style={{ color: 'var(--vscode-activityBar-inactiveForeground)' }}
-          aria-label="Manage (decorative)"
-          title="Manage"
+          aria-hidden
         >
           <span className="codicon codicon-settings-gear !text-[24px]" aria-hidden />
-        </button>
+        </span>
       </div>
     </nav>
   )
