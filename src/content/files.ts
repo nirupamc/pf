@@ -303,58 +303,48 @@ happened afterward.
 Kairos grew into a system for orchestrating that workflow while keeping the
 applicant involved whenever a decision needs context, review, or confirmation.
 
-## What It Does
+## What Exists Today
 
-Discovery
+**Discovery & matching**
 
-↓
+Job discovery, normalized job records, eligibility filtering, and relevance
+and matching logic.
 
-Eligibility & Matching
+**Application intelligence**
 
-↓
+Job-description extraction, applicant and profile context, resume tailoring,
+cover-letter generation, and structured application-question handling.
 
-Resume Tailoring
+**Controlled automation**
 
-↓
+Browser-based application workflows using Playwright and Patchright, with human
+confirmation when the system does not have enough confidence to proceed safely.
 
-Question Resolution
+**Multi-user product layer**
 
-↓
+JWT authentication, isolated user profiles and resumes, application state, and
+user-specific application data.
 
-Browser Application Workflow
+**Application history**
 
-↓
-
-Human Confirmation
-
-↓
-
-Application Tracker
-
-↓
-
-Case File & Audit History
-
-Kairos supports multi-user accounts with JWT authentication, individual
-profiles and resumes, job discovery, normalized job records, eligibility
-filtering, AI matching, tailored resumes, tailored cover letters, a structured
-question engine, browser automation, application tracking, audit logs, and
-case-file history.
+Application tracking, case files, generated artifacts, question decisions, and
+automation events remain traceable after an application attempt.
 
 ## Human-in-the-Loop Design
 
-Kairos intentionally avoids assuming every answer should be generated
-automatically. High-confidence answers can be reused, uncertain answers are
-surfaced for review, and sensitive information is never silently inferred. The
-applicant remains the final decision maker.
+Kairos automates repetitive application work without assuming every decision
+should be made autonomously. High-confidence reusable information can flow
+through automatically, while ambiguous answers are surfaced for confirmation
+and sensitive information is never silently inferred. The applicant remains
+responsible for the final application.
 
 ## Platform Support
 
-Kairos is designed around browser-based recruitment workflows rather than one
-specific website. Supported and targeted flows include LinkedIn, Indeed,
-Workday, Greenhouse, Lever, and generic browser-based ATS systems. This is not
-a claim of universal compatibility: recruitment websites frequently change
-their DOM, forms, and interaction patterns.
+Kairos is designed around job-application workflows across job boards,
+recruitment websites, company career pages, ATS platforms, and browser-based
+application forms rather than around one specific website. Current adapters
+and targeted flows include platforms such as LinkedIn, Indeed, Workday,
+Greenhouse, and Lever; this is not a claim of universal compatibility.
 
 ## Architecture
 
@@ -402,46 +392,53 @@ Kairos keeps an application timeline, automation events, generated artifacts,
 question decisions, a tracker, and a case file so the workflow can be reviewed
 after an application attempt.
 
-## External Usage
+## In Use Today
 
-Kairos is currently deployed as a working Windows desktop application and is
-being used in an active external recruitment workflow with a recruitment
-agency. The current phase is focused on iterative product improvement through
-real usage, bug reports, and operational feedback.
+Kairos has moved beyond being only a development prototype. It is packaged as
+a working Windows desktop application and is currently being used by a
+recruitment agency as part of a real recruitment workflow.
 
-The public website below is the product showcase and portfolio website. It
-explains the product, architecture, and workflow; it is not the hosted desktop
-application itself.
+That external usage creates a feedback loop that isolated testing cannot fully
+reproduce. Real application flows expose brittle selectors, unusual form
+states, missing question categories, browser edge cases, and workflow
+assumptions. Bug reports and operational feedback from the agency feed directly
+into continued product iteration.
+
+The public Kairos website documents the product, architecture, and workflow.
+The application itself remains a desktop product rather than a publicly hosted
+web demo.
 
 [Visit the Kairos website](https://saaskairos.vercel.app/)
 
-## Current Status
+## Operational Realities
 
-- Core platform implemented
-- Multi-user backend implemented
-- Job discovery implemented
-- Resume tailoring implemented
-- Cover letter generation implemented
-- Question Engine implemented
-- Browser automation implemented
-- Tracker and Case File implemented
-- Windows desktop application packaged
-- Active external usage underway
-- Continuous bug fixing and iteration ongoing
+Browser automation against third-party recruitment systems is inherently a
+moving target. Job boards, career sites, and ATS providers can change DOM
+structures, authentication flows, forms, and anti-bot behavior, so adapters
+require continued maintenance.
 
-## Limitations
+Some application questions intentionally remain human decisions. Sensitive
+information and low-confidence answers should be confirmed rather than silently
+inferred, while model output quality depends on the applicant and job context
+available to the system.
 
-- Recruitment websites frequently change their DOM and flows.
-- Browser automation requires maintenance as platforms evolve.
-- Some questions intentionally require manual confirmation.
-- Model output depends on available profile and job context.
-- Anti-bot protections can affect automation reliability.
-- The current product is desktop-first.
+The current application is desktop-first while development continues.
 
 ## Stack
 
-React/Vite, TypeScript, Python, FastAPI, JobSpy, JWT, bcrypt, Jinja2, local
-LLM, optional NVIDIA NIM, Playwright/Patchwright, and SQLite.
+**Frontend:** React, TypeScript, Vite
+
+**Backend:** Python, FastAPI
+
+**Automation:** Playwright / Patchright
+
+**Job discovery:** JobSpy and platform adapters
+
+**AI:** Local LLM, optional NVIDIA NIM
+
+**Application layer:** JWT, bcrypt, Jinja2
+
+**Persistence:** SQLite with per-user data isolation
 `
 
 const gamusaMd = `# Gamusa, Reimagined

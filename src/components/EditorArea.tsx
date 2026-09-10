@@ -193,6 +193,7 @@ function MarkdownOrRaw({ file }: { file: PortfolioFile }) {
   const raw = useStore((s) => s.markdownRaw[file.id])
   const toggle = useStore((s) => s.toggleMarkdownRaw)
   const project = projects.find((candidate) => candidate.bodyFileId === file.id)
+  const liveActionLabel = project?.liveLabel ?? 'Live'
 
   return (
     <div className="relative h-full">
@@ -210,17 +211,17 @@ function MarkdownOrRaw({ file }: { file: PortfolioFile }) {
             GitHub
           </a>
         )}
-            {project?.live && (
+        {project?.live && (
           <a
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Open live ${project.title} site`}
-            title={`Open live ${project.title} site`}
+            aria-label={`Open ${project.title} ${liveActionLabel}`}
+            title={`Open ${project.title} ${liveActionLabel}`}
             className="flex h-[26px] items-center gap-1 rounded border border-white/15 bg-[color:var(--portfolio-editorAction-background)] px-2 text-[12px] hover:bg-[color:var(--portfolio-editorAction-hoverBackground)]"
           >
             <span className="codicon codicon-globe !text-[14px]" aria-hidden />
-            {project.liveLabel ?? 'Live'}
+            {liveActionLabel}
           </a>
         )}
         <button
