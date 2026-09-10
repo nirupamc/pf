@@ -210,7 +210,7 @@ function MarkdownOrRaw({ file }: { file: PortfolioFile }) {
             GitHub
           </a>
         )}
-        {project?.live && (
+            {project?.live && (
           <a
             href={project.live}
             target="_blank"
@@ -220,7 +220,7 @@ function MarkdownOrRaw({ file }: { file: PortfolioFile }) {
             className="flex h-[26px] items-center gap-1 rounded border border-white/15 bg-[color:var(--portfolio-editorAction-background)] px-2 text-[12px] hover:bg-[color:var(--portfolio-editorAction-hoverBackground)]"
           >
             <span className="codicon codicon-globe !text-[14px]" aria-hidden />
-            Live
+            {project.liveLabel ?? 'Live'}
           </a>
         )}
         <button

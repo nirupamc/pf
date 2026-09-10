@@ -23,6 +23,7 @@ export interface Project {
   stack?: string[]
   github?: string
   live?: string
+  liveLabel?: string
   article?: string
   mediaSlug?: string
   bodyFileId: string

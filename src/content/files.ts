@@ -280,46 +280,168 @@ const tantechDashboardMd = `# TanTech Dashboard
 [Source — github.com/nirupamc/database-t_t](https://github.com/nirupamc/database-t_t)
 `
 
-const autoApplyMd = `# AutoApply
+const autoApplyMd = `# Kairos
 
-> Human-in-the-loop application assistance and browser automation.
+Kairos is a human-in-the-loop recruitment workflow platform designed to help
+organize, tailor, and automate job application workflows across modern job
+platforms. It combines job discovery, eligibility analysis, resume tailoring,
+browser automation, application tracking, and structured review rather than
+simply auto-submitting applications.
 
-## What it is
+Kairos grew out of the internal AutoApply project. The product is built as a
+multi-user system that keeps the applicant involved whenever confidence is low
+or information is sensitive.
 
-AutoApply explores the repetitive parts of job applications: finding jobs,
-extracting requirements, tailoring application material, and mapping answers
-onto different browser forms. The system is in development at TanTech LLC.
+## Why I Built It
 
-## Workflow
+The problem was not simply applying faster. It was repeatedly performing the
+same workflow across different job boards and recruitment sites: finding
+relevant jobs, checking eligibility, tailoring resumes, answering repetitive
+application questions, navigating different ATS forms, and tracking what
+happened afterward.
 
-\`Job discovery → eligibility filtering → JD extraction → resume / cover-letter generation → question engine → browser automation\`
+Kairos grew into a system for orchestrating that workflow while keeping the
+applicant involved whenever a decision needs context, review, or confirmation.
 
-The intended flow uses confidence thresholds and keeps sensitive fields out of
-automatic inference. A person remains responsible for reviewing and deciding
-what is submitted.
+## What It Does
 
-## Engineering decisions
+Discovery
 
-- Use structured parsing and LLM function calling for variable form shapes.
-- Treat browser automation as an execution boundary rather than letting a
-  model directly control arbitrary page actions.
-- Add confidence thresholds so uncertain field mappings can return to a human.
-- Keep application data and sensitive fields explicit instead of guessing them.
+↓
 
-## Current limitations
+Eligibility & Matching
 
-- This is a work in progress, not a claim of a finished application platform.
-- Workday, Greenhouse, Lever, and similar sites can change their forms and
-  automation constraints.
-- Anti-bot controls and site terms limit where browser automation is
-  appropriate.
+↓
+
+Resume Tailoring
+
+↓
+
+Question Resolution
+
+↓
+
+Browser Application Workflow
+
+↓
+
+Human Confirmation
+
+↓
+
+Application Tracker
+
+↓
+
+Case File & Audit History
+
+Kairos supports multi-user accounts with JWT authentication, individual
+profiles and resumes, job discovery, normalized job records, eligibility
+filtering, AI matching, tailored resumes, tailored cover letters, a structured
+question engine, browser automation, application tracking, audit logs, and
+case-file history.
+
+## Human-in-the-Loop Design
+
+Kairos intentionally avoids assuming every answer should be generated
+automatically. High-confidence answers can be reused, uncertain answers are
+surfaced for review, and sensitive information is never silently inferred. The
+applicant remains the final decision maker.
+
+## Platform Support
+
+Kairos is designed around browser-based recruitment workflows rather than one
+specific website. Supported and targeted flows include LinkedIn, Indeed,
+Workday, Greenhouse, Lever, and generic browser-based ATS systems. This is not
+a claim of universal compatibility: recruitment websites frequently change
+their DOM, forms, and interaction patterns.
+
+## Architecture
+
+Frontend
+
+React · TypeScript · Vite
+
+↓
+
+Backend API
+
+FastAPI · Python
+
+↓
+
+Job Discovery
+
+JobSpy + platform adapters
+
+↓
+
+Intelligence Layer
+
+Local LLM · Optional NVIDIA NIM
+
+↓
+
+Automation Layer
+
+Playwright / Patchright browser workflows
+
+↓
+
+Persistence
+
+SQLite + per-user data isolation
+
+Jinja2 is used for resume and cover-letter templating. Passwords use bcrypt
+hashing, and user-specific application data stays isolated.
+
+## Explainability & Tracking
+
+Every application becomes a traceable record rather than a black-box action.
+Kairos keeps an application timeline, automation events, generated artifacts,
+question decisions, a tracker, and a case file so the workflow can be reviewed
+after an application attempt.
+
+## External Usage
+
+Kairos is currently deployed as a working Windows desktop application and is
+being used in an active external recruitment workflow with a recruitment
+agency. The current phase is focused on iterative product improvement through
+real usage, bug reports, and operational feedback.
+
+The public website below is the product showcase and portfolio website. It
+explains the product, architecture, and workflow; it is not the hosted desktop
+application itself.
+
+[Visit the Kairos website](https://saaskairos.vercel.app/)
+
+## Current Status
+
+- Core platform implemented
+- Multi-user backend implemented
+- Job discovery implemented
+- Resume tailoring implemented
+- Cover letter generation implemented
+- Question Engine implemented
+- Browser automation implemented
+- Tracker and Case File implemented
+- Windows desktop application packaged
+- Active external usage underway
+- Continuous bug fixing and iteration ongoing
+
+## Limitations
+
+- Recruitment websites frequently change their DOM and flows.
+- Browser automation requires maintenance as platforms evolve.
+- Some questions intentionally require manual confirmation.
+- Model output depends on available profile and job context.
+- Anti-bot protections can affect automation reliability.
+- The current product is desktop-first.
 
 ## Stack
 
-FastAPI, multi-user authentication, LLM function calling, structured parsing,
-Playwright/Patchright browser automation, and application workflow logic.
-
-[Source — github.com/nirupamc/auto-apply-](https://github.com/nirupamc/auto-apply-)
+React/Vite, TypeScript, Python, FastAPI, JobSpy, JWT, bcrypt, Jinja2, local
+LLM, optional NVIDIA NIM, Playwright/Patchwright, and SQLite.
 `
 
 const gamusaMd = `# Gamusa, Reimagined
@@ -566,7 +688,7 @@ An interactive 3D controller experiment for the browser.
 
 **[Aletheia](/${projectPath('aletheia')})** — ${projectSummary('aletheia')}
 
-**[AutoApply](/${projectPath('auto-apply')})** — ${projectSummary('auto-apply')}
+**[Kairos](/${projectPath('auto-apply')})** — ${projectSummary('auto-apply')}
 
 **[RagParser](/${projectPath('ragparser')})** — ${projectSummary('ragparser')}
 
